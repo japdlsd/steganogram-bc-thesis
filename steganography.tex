@@ -1,10 +1,10 @@
 \chapter{Image-based steganography}
 
-In this chapter we will cover the term steganography, explain 
+In this chapter we will cover the term steganography and explain 
 how can we measure its strength. Then we will proceed to image-based
-steganography, specifically to JPEG-based one. We will end this chapter
-with overview of present state in free and/or open-source software for steganography
-(for Android platform).
+(specifically to JPEG-based) steganography. We will end this chapter
+with overview of present state in free and/or open-source software
+for steganography on Android platform.
 
 \section{What steganography is?}
 
@@ -15,8 +15,8 @@ the goal of steganography is to conceal the very fact that the message exists.
 \paragraph{A bit of terminology}
 
 Information, which we want to hide, is often called \textit{secret message}. The object,
-in which we want to embed our secret message, is often called \textit{cover message}\footnote{or, in our case,
-\textit{cover image}}. Additional information, required to detect and extract the secret message
+in which we want to embed our secret message, is often called \textit{cover message} (or, in our case,
+\textit{cover image}). Additional information, required to detect and extract the secret message
 from cover object, is called \textit{stegokey} (as opposed to cryptokey, which is used to 
 unveil the content of the message). If the stegokey, needed to embed a message is different
 from the key, needed to extract it, we call this steganographic method \textit{asymmetric}. In
@@ -63,7 +63,7 @@ Compression consists of several steps:
 \subsection{Color space transformation}
 
 Pixels are transformed from RGB to YCbCr color space. Y channel represents
-brightness of a pixel\footnote{which can be viewed as greyscale copy of the original image},
+brightness of a pixel ({which can be viewed as greyscale copy of the original image}),
 Cb and Cr components represent so called \textit{chrominance} -- color without brightness. 
 You can see example in figure \ref{img:YCbCr}.
 
@@ -207,7 +207,7 @@ This approach can be broken using S family attack.
 
 \subsection{S family attack}
 
-This attack is based on further compression of cover image ans comparing 
+This attack is based on further compression of cover image and comparing 
 specifically constructed statistics $S$ of the original and compressed images.
 
 % Details can be read here \TODO source.
@@ -216,7 +216,7 @@ specifically constructed statistics $S$ of the original and compressed images.
 
 This algorithms is designed to fight with both S and chi-square attacks families.
 
-It divides secret message into 2 parts, and embed it at randomlychosen DCT coefficients,
+It divides secret message into 2 parts, and embed it at randomly chosen DCT coefficients,
 but for first part, it encodes bits by adding one to DCT coefficient if the value of 
 secret bit is 1, and for the second part, it subtract 1 instead. Therefore, as the article
 \cite{liu2008high} shows, it can successfully pass through both of these tests.
