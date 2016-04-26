@@ -17,6 +17,7 @@
 
 ## CUSTOM ADDED
 main.pdf
+*.tex~
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
