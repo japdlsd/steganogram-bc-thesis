@@ -66,3 +66,12 @@ methods were implemented correctly).
 Many social media are known to compress any images that are sent through
 their system. We'd like to analyse whether it is possible to save the information
 in the image inspite of comression (e.g. by using error correction encoding).
+
+\section{Other design choices}
+
+\subsection{Key management -- master key}
+Whenever an application has to deal with keys, it is a good idea to conceal them
+and reveal them only by entering a so called \emhp{master key}. We decided not to implement
+this feature, as if a user and his mobile are already in hands of the censors, it is only 
+a matter of time when he would give up his master key. The whole purpose of our application
+is to avoid the contact with the censors.
