@@ -19,6 +19,7 @@
 main.pdf
 *.tex~
 *.bib~
+*.md~
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
