@@ -1,7 +1,6 @@
 \chapter{Goal of this work}
 
-In this chapter we will specify theoretical and techincal 
-requirements on our application.
+In this chapter we will specify requirements on our application.
 
 \section{Motivation}
 
@@ -17,22 +16,18 @@ and these photos are being sent through various social media all the time.
 In chapter \ref{sec:image-steganography} we discussed about different formats for
 this purpose, and we've chosen \emph{JPEG} as the most suitable.
 
-\section{Reqiurements}
+\section{Functional reqiurements}
+In this section we will discuss \emph{which} tasks our application has to be able to perform.
 
-In this section we will discuss concrete requirements on our application.
+\subsection{Embedding and extracting of messages into images}
+Main function is to embed text message into JPEG files from the phone's camera using steganography.
+The application should forbid to use images from phone's memory, for it could lead to multiple 
+using of the same image, which is \emph{very bad} for user's inconspicuousness.
 
-\subsection{Main functionality}
-Main function is to embed text message into JPEG file using steganography.
-
-\subsection{Steganographic algorithm}
-As we discussed earlier in chapter \ref{sec:how-to-hide-information}, 
-steganographic algorithm should use secret keys.
-
-Our application has to be able to generate secure keys for that purpose.
-
-\subsection{Cryptographic algorithm}
-The secret message has to be encrypted for harder extracting of 
-the message from the image.
+\subsection{Message encryption}
+The application has to be able to encrypt and decrypt the message. This also contributes
+to undetectability of the secret message, as the result of extracting still would be 
+undistinguishable from a random noise.
 
 We also have had to decide whether we will use symmetric or asymmetric
 encryption. We decided to stick with symmetric, as it has easier key management.
@@ -41,13 +36,30 @@ send the same message many times with different keys, whether embedded in one
 image (which would make the detection easier) or in many images (which would
 also increase suspicion).
 
-\subsection{Key management}
-The application as to provide a comfortable way to generate secure keys for 
-steganographic and cryptographic algorithms.
-
-\subsection{Compression}
+\subsection{Message compression}
 The secret message has to compressed in order to take minimum possible space in medium,
 as bigger changes in medium are easier to detect.
+
+\subsection{Key management}
+Our application has to be able to genererate secure keys for steganographic and
+cryptographic algoritmhs. It is also should be possible to share a key with someone
+else (in order to communicate).
+
+Whenever an application has to deal with keys, it is a good idea to conceal them
+and reveal them only by entering a so called \emph{master key}. We decided not to implement
+this feature, as if a user and his mobile are already in hands of the censors, it is only 
+a matter of time when he would give up his master key. The whole purpose of our application
+is to avoid the contact with the censors.
+
+\subsection{Optimal conditions of undetectability}
+Our application has to be able to decide whether it is sufficiently secure to 
+send a message of given length. 
+
+
+
+\section{Technical requierements}
+In this section we will discuss requirements on \emph{how} our application has
+to perform its tasks.
 
 \subsection{Support of UTF-8}
 Our application is meant to be used all around the world, and not all languages use
@@ -67,15 +79,3 @@ Many social media are known to compress any images that are sent through
 their systems. We'd like to analyse whether it is possible to save the information
 in the image inspite of comression (e.g. by using error correction encoding).
 
-\subsection{Optimal conditions of undetectability}
-Our application has to be able to decide whether it is sufficiently secure to 
-send a message of given length. 
-
-\section{Other design choices}
-
-\subsection{Key management -- master key}
-Whenever an application has to deal with keys, it is a good idea to conceal them
-and reveal them only by entering a so called \emph{master key}. We decided not to implement
-this feature, as if a user and his mobile are already in hands of the censors, it is only 
-a matter of time when he would give up his master key. The whole purpose of our application
-is to avoid the contact with the censors.
