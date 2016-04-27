@@ -225,10 +225,7 @@ zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 
 \mainmatter
 
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
-
-\TODO
+\input introduction.tex
 
 %\part{EXISTED KNOWLEDGE}
 
@@ -238,62 +235,11 @@ zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 
 \input goals.tex
 
-\chapter{Theoretical aspects of application}
+\input theory.tex
 
-In this chapter we will talk about steganographic communication protocol,
-discuss various possible communication channels (carriers), describe
-used algorithms (both for steganography and cryptography) with concrete
-settings. Then we will talk about limits of algorithms we've chosen and
-how to maximize their strength by follow "good policies" of usage.
+\input implementation.tex
 
-\section{Communication protocol}
-
-\TODO diagram
-
-\section{Analysis of communication channels}
-
-\paragraph{Twitter}
-\paragraph{Facebook}
-\paragraph{Instagram}
-\paragraph{Google+}
-\paragraph{Google Photos}
-\paragraph{4chan.org}
-\paragraph{9gag.com}
-\paragraph{reddit.com}
-
-
-
-\section{Used algorithms}
-
-\subsection{Compression algorithm}
-\TODO ZIP - concrete constants and link to detailed description.
-\subsection{Encryption algorithm}
-\TODO AES - concrete constants and link to detailed description.
-\subsection{Steganographic algorithm}
-\TODO probably E1 - concrete constants and reference to first chapter with detailed explanation.
-
-\section{Usage of application}
-\subsection{Secret keys}
-\subsection{Limits of message length}
-\subsection{Optimal conditions for undetectability}
-
-\chapter{Implementation}
-
-In this chapter we will talk about interesting implmentation details of
-our application.
-
-\section{Design of interfaces for interchangable libraries}
-
-\section{Android phone capabilities}
-
-
- 
-%\part{OLD STUFF}
-%\input old_stuff.tex
-
-\chapter*{Summary}
-\addcontentsline{toc}{chapter}{Summary}
-\TODO
+\input summary.tex
 
 % -------------------
 % --- Bibliografia
