@@ -41,7 +41,7 @@
 \def\mfpracovisko{ Department of Computer Science }
 
 %% my macros
-\def\TODO{\textbf{\textcolor{red}{TODO}}}
+\def\TODO{\textbf{\textcolor{red}{TODO }}}
 
 \begin{document}     
 
@@ -167,9 +167,9 @@ stručne sumarizuje výsledky práce. Mal by byť pochopiteľný pre bežného
 informatika. Nemal by teda využívať skratky, termíny alebo označenie
 zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 
-\TODO
+\TODO Abstrakt v slovencine
 
-\paragraph*{Kľúčové slová:} \TODO, \TODO, \TODO
+\paragraph*{Kľúčové slová:} steganografia, Android, open-source, JPEG, komplementárne vkládanie 
 % --- Koniec Abstrakt - Slovensky
 
 
@@ -179,9 +179,9 @@ zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 \newpage 
 \section*{Abstract}
 
-\TODO
+\TODO abstract in English
 
-\paragraph*{Keywords:} steganography, Android, open-source, JPEG
+\paragraph*{Keywords:} steganography, Android, open-source, JPEG, complementary embedding
 
 % --- Koniec Abstrakt - Anglicky
 
@@ -225,13 +225,6 @@ zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 
 \mainmatter
 
-
-%\input uvod.tex 
-%\input kapitola.tex
-%\input latex.tex
-%\input lorem.tex
-%\input zaver.tex
-
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
@@ -243,25 +236,7 @@ zavedené v práci, okrem tých, ktoré sú všeobecne známe.
 
 %\part{OUR WORK}
 
-\chapter{Goal of this work}
-
-In this chapter we will specify theoretical and techincal 
-requirements on our application.
-
-\begin{itemize}
-    \item main functionality: embed and extract compressed encrypted 
-          messages into JPEG images with stegokey and cryptokey
-    \item strong cryptography
-    \item strong steganography
-    \item compression algorithm optimized for text
-    \item support of UTF-8 text
-    \item design requirement: possiblitiy of change of used libraries
-    \item prediction of maximum message length based on stegongraphy algorithm and cover image
-    \item possibility of splitting long (potentially unsecure) message into smaller ones and embedding
-          into several messages
-    \item possibility of sending message via social media and/or messengers
-    \item ability to withstand additional compression of images of different communication channels
-\end{itemize}
+\input goals.tex
 
 \chapter{Theoretical aspects of application}
 
@@ -336,22 +311,6 @@ our application.
 \bibliographystyle{plain}
 \bibliography{literatura} 
 
-%Prípadne môžete napísať literatúru priamo tu
-%\begin{thebibliography}{5}
- 
-%\bibitem{br1} MOLINA H. G. - ULLMAN J. D. - WIDOM J., 2002, Database Systems, Upper Saddle River : Prentice-Hall, 2002, 1119 s., Pearson International edition, 0-13-098043-9
-
-%\bibitem{br2} MOLINA H. G. - ULLMAN J. D. - WIDOM J., 2000 , Databasse System implementation, New Jersey : Prentice-Hall, 2000, 653s., ???
-
-%\bibitem{br3} ULLMAN J. D. - WIDOM J., 1997, A First Course in Database Systems, New Jersey : Prentice-Hall, 1997, 470s., 
-
-%\bibitem{br4} PREFUSE, 2007, The Prefuse visualization toolkit,  [online] Dostupné na internete: <http://prefuse.org/>
-
-%\bibitem{br5} PREFUSE Forum, Sourceforge - Prefuse Forum,  [online] Dostupné na internete: <http://sourceforge.net/projects/prefuse/>
-
-%\end{thebibliography}
-
-%---koniec Referencii
 
 % -------------------
 %--- Prilohy---

@@ -37,6 +37,7 @@ So instead another method is often used: whether the attacker can predict (or ra
 length of embedded message.
 
 \section{Image-based steganography}
+\label{sec:image-steganography}
 
 How to hide messages in lossless image formats and why it isn't a good idea.
 
@@ -158,8 +159,11 @@ compressed, and therefore significant compress ratio could be achieved.
 
 
 \section{How to hide information in JPEG?}
+\label{sec:how-to-hide-information}
 
 \textit{This section is based on article \cite{liu2008high}.}
+
+\TODO discuss the need of stegokey
 
 An image encoded in JPEG format could be seen as a bunch of (quantized)
 DCT coefficients, which are just regular integer numbers. One of the
@@ -223,4 +227,12 @@ secret bit is 1, and for the second part, it subtract 1 instead. Therefore, as t
 
 \subsection{Bernford law}
 
+\TODO 
+
+\TODO add Pm1 using genetic algorithms
+
+\TODO add SVM and general machine learning for steganalysis
+
 \section{Present state of free and/or open-source programs}
+
+\TODO show general mistakes: fixed stegokeys, closed implementation, hardness of usage of correct crypto

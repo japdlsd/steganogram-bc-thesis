@@ -1,0 +1,68 @@
+\chapter{Goal of this work}
+
+In this chapter we will specify theoretical and techincal 
+requirements on our application.
+
+\section{Motivation}
+
+Our initial motivation was to create an application for communication between
+people in countries with censored Internet (e.g. Syria, Egypt), with only limited communication channels
+available (e.g. e-mails, Facebook, ICQ, etc.). Particularly we are interested in
+creating a way to communicate with outer world securely and inconspicuously.
+
+We have chosen digital images as our communication medium because it is only natural for
+a mobile phone to have plenty of almost useless photos (e.g. photoes of someone's dog or dinner)
+and these photos are being sent through various social media all the time.
+
+In chapter \ref{sec:image-steganography} we discussed about different formats for
+this purpose, and we've chosen \emph{JPEG} as the most suitable.
+
+\section{Reqiurements}
+
+In this section we will discuss concrete requirements on our application.
+
+\subsection{Main functionality}
+Main function is to embed text message into JPEG file using steganography.
+
+\subsection{Steganographic algorithm}
+As we discussed earlier in chapter \ref{sec:how-to-hide-information}, 
+steganographic algorithm should use secret keys.
+
+Our application has to be able to generate secure keys for that purpose.
+
+\subsection{Cryptographic algorithm}
+The secret message has to be encrypted for harder extracting of 
+the message from the image.
+
+We also have had to decide whether we will use symmetric or asymmetric
+encryption. We decided to stick with symmetric, as it has easier key management.
+Also, if a user would like to send a message to many people, he would have to
+send the same message many times with different keys, whether embedded in one 
+image (which would make the detection easier) or in many images (which would
+also increase suspicion).
+
+\subsection{Key management}
+The application as to provide a comfortable way to generate secure keys for 
+steganographic and cryptographic algorithms.
+
+\subsection{Compression}
+The secret message has to compressed in order to take minimum possible space in medium,
+as bigger changes in medium are easier to detect.
+
+\subsection{Support of UTF-8}
+Our application is meant to be used all around the world, and not all languages use
+Latin alphabet to encode it (e.g. Arabic, Russian). 
+
+\subsection{Interchangeability of algorithms}
+As steganography and steganalysis develop very quickly, our application
+has to have the ability to easily change used algorithms.  
+
+\subsection{Openness of the code}
+No one can trust an application that has closed source code (not only because
+this code could be harmful, but also because no one can check whether all
+methods were implemented correctly).
+
+\subsection{Ability to withstand additional compression}
+Many social media are known to compress any images that are sent through
+their system. We'd like to analyse whether it is possible to save the information
+in the image inspite of comression (e.g. by using error correction encoding).
