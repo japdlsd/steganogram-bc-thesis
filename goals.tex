@@ -7,7 +7,8 @@ In this chapter we will specify requirements on our application.
 Our initial motivation was to create an application for communication between
 people in countries with censored Internet (e.g. Syria, Egypt), with only limited communication channels
 available (e.g. e-mails, Facebook, ICQ, etc.). Particularly we are interested in
-creating a way to communicate with outer world securely and inconspicuously.
+creating a way to communicate with outer world securely and inconspicuously 
+(e.g. correspondents).
 
 We have chosen digital images as our communication medium because it is only natural for
 a mobile phone to have plenty of almost useless photos (e.g. photoes of someone's dog or dinner)
@@ -46,8 +47,8 @@ cryptographic algoritmhs. It is also should be possible to share a key with some
 else (in order to communicate).
 
 Whenever an application has to deal with keys, it is a good idea to conceal them
-and reveal them only by entering a so called \emph{master key}. We decided not to implement
-this feature, as if a user and his mobile are already in hands of the censors, it is only 
+and reveal them only by entering a so called \emph{master key}. We decided not to demand
+this feature, as if a user and his mobile phone are already in hands of the censors, it is only 
 a matter of time when he would give up his master key. The whole purpose of our application
 is to avoid the contact with the censors.
 

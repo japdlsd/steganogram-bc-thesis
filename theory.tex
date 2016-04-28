@@ -1,41 +1,72 @@
 \chapter{Theoretical aspects of application}
+In this chapter we will takl about the communication protocol,
+describe used algorithms (with an accent on steganography), 
+overview various possible communication channels (carriers).
+% TODO remove if won't be.
+We will also talk briefly about resistance of used algorithms
+against additional compression of image with embedded message.
+We will end this chapter with a list of ''good practices''
+a user should follow to achieve maximum possible security
+and undetectability.
 
-In this chapter we will talk about steganographic communication protocol,
-discuss various possible communication channels (carriers), describe
-used algorithms (both for steganography and cryptography) with concrete
-settings. Then we will talk about limits of algorithms we've chosen and
-how to maximize their strength by follow "good policies" of usage.
 
 \section{Communication protocol}
+In this section we will describe how the communication works.
 
-\TODO diagram
-
-\section{Analysis of communication channels}
-
-\paragraph{Twitter}
-\paragraph{Facebook}
-\paragraph{Instagram}
-\paragraph{Google+}
-\paragraph{Google Photos}
-\paragraph{4chan.org}
-\paragraph{9gag.com}
-\paragraph{reddit.com}
-
-
+% TODO insert the communication diagram
 
 \section{Used algorithms}
+In this section we will describe algorithms that we used in our application
+and discuss their suitness for our purpose. 
+We have had to find a balance between potential quality of the algorithms 
+and the cost of their implementation/incorporation.
 
-\subsection{Compression algorithm}
-\TODO GZIP - concrete constants and link to detailed description.
-\subsection{Encryption algorithm}
-\TODO AES - concrete constants and link to detailed description.
-\subsection{Steganographic algorithm}
-\TODO CE - concrete constants and reference to first chapter with detailed explanation.
+% TODO find a better way to say it?
+\textit{We'd like to mention that these algorithms are not the product of our work.}
 
-\section{Usage of application}
+\subsection{Steganographic algorithm: Complementary embedding}
+% TODO link to the whole paper
 
-\subsection{Secret keys}
+\subsubsection{Description}
+% the whole algorithm (with listings?)
 
-\subsection{Limits of message length}
+\subsubsection{Choosing correct parameters}
+% address the original paper
 
-\subsection{Optimal conditions for undetectability}
+\subsubsection{Maximum safe length of the message}
+
+\subsection{Cryptographic algorithm: AES}
+% TODO description and link to more specific paper
+% TODO add link to implementation
+% TODO add link to the original paper
+
+\subsection{Compression algorithm: GZIP}
+% TODO link to original paper or standard
+
+
+\section{Resistance against additional compression}
+% TODO it is bad :)
+
+
+\section{Communication channels}
+In this section we will enlist communication channels that are suitable for our purpose.
+% TODO really? :D
+
+\section{How to use the application correctly}
+In this section we will describe common mistakes and give some advices on
+how to achieve maximum inconspicuousness.
+
+\paragraph{Never use the same image twice}
+
+\paragraph{Never send the same message twice}
+
+\paragraph{Change your keys frequently}
+
+\paragraph{Use small images}
+% TODO or rather bigg? vivid? black-white?
+
+\paragraph{Try to write your messages as short as possible}
+
+\paragraph{Generate your keys by app's utilities, not by hand}
+
+% TODO something about key management?
