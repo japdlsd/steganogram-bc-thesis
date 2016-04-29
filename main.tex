@@ -13,14 +13,19 @@
 \usepackage{comment}
 \usepackage{moreverb}
 
+\usepackage{enumitem}
+
+\newlist{Algo}{enumerate}{1}
+\setlist[Algo]{label=\textbf{Step \arabic*:}}
+
 \usepackage{listings}
 \lstset{
 language=Java,
 basicstyle=\scriptsize\ttfamily,
-numbers=left,
-numberstyle=\tiny\color{lightblue},
-stepnumber=1,
-numbersep=15pt,
+%numbers=left,
+%numberstyle=\tiny\color{lightblue},
+%stepnumber=1,
+%numbersep=15pt,
 showspaces=false,
 showstringspaces=false,
 tabsize=4,

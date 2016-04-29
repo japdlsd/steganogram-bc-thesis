@@ -10,7 +10,7 @@ a user should follow to achieve maximum possible security
 and undetectability.
 
 
-\section{Communication protocol}
+\section{Communication scheme}
 In this section we will describe how the communication works.
 
 % TODO insert the communication diagram
@@ -19,7 +19,7 @@ In this section we will describe how the communication works.
 In this section we will describe algorithms that we used in our application
 and discuss their suitness for our purpose. 
 We have had to find a balance between potential quality of the algorithms 
-and the cost of their implementation/incorporation.
+and the cost of their implementation and usage.
 
 % TODO find a better way to say it?
 \textit{We'd like to mention that these algorithms are not the product of our work.}
@@ -27,13 +27,194 @@ and the cost of their implementation/incorporation.
 \subsection{Steganographic algorithm: Complementary embedding}
 % TODO link to the whole paper
 
-\subsubsection{Description}
-% the whole algorithm (with listings?)
+This algorithm was proposed by Chiang-Lung~Liu and Shiang-Rong~Liao in \cite{liu2008high}.
+We've chosen this algorithm as it has better steganographic properties than the ''unofficial
+stadnart'' algorithm F5 and is relatively simple to implement and to verify its correctness.
 
-\subsubsection{Choosing correct parameters}
-% address the original paper
+This algorithm was primarily developed to withstand S-attacks (as opposed to F5~algorithm).
+It achieves this goal by dividing both message and DCT~coefficients into two parts
+(according to steganographic~key and predefined separation~ratio~$\alpha$) and
+modifying coefficients in the first part by subtracting and in the second part by addition.
 
-\subsubsection{Maximum safe length of the message}
+\subsubsection{Embedding process}
+Input for the algorithm:
+
+\begin{itemize}
+    \item $K$ steganographic key (seed for random generator)
+    \item $B$ bytes to be embedded (secret message, encrypted and compressed)
+    \item $\alpha$ separation ratio
+    \item $\beta$ adjustment parameter
+    \item $D$ quantized DCT coefficients sequence
+\end{itemize}
+
+Output of the algorithm:
+
+\begin{itemize}
+    \item $D'$ changed quantized DCT coefficients
+\end{itemize}
+
+\begin{Algo}
+\item 
+Use a stego-key $K$ to create a permutation of quantized coefficients $D$.
+That is, $$Q := PERM_K(D),$$ where $PERM(\cdot)$ is a key-dependent
+permutation function and $Q$ denotes the permuted coefficient sequence.
+\item
+Divide $Q$ into two parts, $Q_1$ and $Q_2$, according to separation ratio $\alpha$.
+That is, $$Q_1 := Q[0 : \alpha * LEN(Q)],~ Q_2 := Q[\alpha * LEN(Q) : LEN(Q)],$$
+where $LEN(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
+$a$-th to $b$-th element (half-open interval, i.e. $b$-th element does not belong into slice).
+\item 
+Separate the secret message bytes sequence $B$ into to two parts $B_1$ and $B_2$, 
+according to the separation ratio $\alpha$ (similarly to previous step).
+\item
+Let $L_1$ and $L_2$ denote the byte representations of $LEN(B_1)$ and $LEN(B_2)$, respectively.
+Let $M_1$ be the concatenation of the $L_1$ and $B_1$ ($M_1 := L_1 || M_1$). Similarly, let
+$M_2 := L_2 || B_2$. That would be our two parts we will embed into the cover image.
+\item
+Convert byte sequences $M_1$ and $M_2$ to bit sequences $M'_1$ and $M'_2$ (by using little endian
+encoding).
+\item
+Embed $M'_1$ into the non-zero coefficients of $Q_1$ using algorithm E1. Note that
+the adjustment parameter $\beta$ is used here to make it more resistable against statistical attacks.
+\item
+Embed $M'_2$ into the non-zero coefficients of $Q_2$ using algorithm E2.
+\item
+Combine $Q_1$ and $Q_2$ to form a single coefficient sequence $Q'$.
+\item 
+Using stego-key $K$, depermute the coefficient sequence $Q'$ into $D'$. That is,
+$$D' := PERM^{-1}_K(Q'),$$ where $PERM^{-1}$ denotes the inverse permutation.
+\item 
+Return $D'$.
+\end{Algo}
+
+Algorithms E1 and E2 are essentially just for-loops through all bits of the secret message
+and coefficients with a complex if-statement inside, descibing how to change coefficients
+(changes of coefficients depend on oddness of the coefficient and
+value of the secret bit). Detailed pseudocode can be found in the original paper.
+
+Here we show our implementation of these algorithms' if-statements 
+in a single function (in Java programming language). 
+Variable~$type$ denotes whether we are using E1 or E2 algotithm.
+
+\begin{lstlisting}
+public int embedBitUnsafe (final int type, final int c, final int bit) {
+    // type: 1 for E1, 2 for E2 algorithm
+    // c: (non-zero) coefficient we are changing
+    // bit: secret bit to embed
+    if (type == 1) {
+        if (c > 0 && isOdd(c)) {
+            if (bit == 0 && c-1 == 0) return c-2;
+            else if (bit == 0 && c-1 != 0) return c-1;
+            else if (bit == 1) return c;
+        }
+        else if (c > 0 && isEven(c)) {
+            if (bit == 1) return c-1;
+            else if (bit == 0) return c;
+        }
+        else if (c < 0 && isOdd(c)) {
+            if (bit == 1) return c-1;
+            else if (bit == 0) return c;
+        }
+        else if (c < 0 && isEven(c)) {
+            if (bit == 0) return c-1;
+            // in paper the condition is (c == 1), but it doesn't make much sense
+            else if (bit == 1) return c;
+        }
+    }
+    else if (type == 2) {
+        if (c > 0 && isOdd(c)) {
+            if (bit == 1) return c+1;
+            else if (bit == 0) return c;
+        }
+        else if (c > 0 && isEven(c)) {
+            if (bit == 0) return c+1;
+            else if (bit == 1) return c;
+        }
+        else if (c < 0 && isOdd(c)) {
+            if (bit == 0 && c + 1 == 0) return c+2;
+            else if (bit == 0 && c + 1 != 0) return c+1;
+            else if (bit == 1) return c;
+        }
+        else if (c < 0 && isEven(c)) {
+            if (bit == 1) return c+1;
+            else if (bit == 0) return c;
+        }
+    }
+}
+\end{lstlisting}
+
+Algorithm E1 additionally change a part of used coefficients using the adjustment
+parameter $\beta$. The adjustment is simple: we need to look at first $\beta * LEN(M)$ coefficients and
+change values $-2$ to value $1$.
+
+\subsubsection{Extraction process}
+Input for the algorithm:
+
+\begin{itemize}
+    \item $K$ steganographic key (seed for random generator)
+    \item $\alpha$ separation ratio
+    \item $\beta$ adjustment parameter
+    \item $D$ quantized DCT coefficients sequence with embedded message
+\end{itemize}
+
+Output of the algorithm:
+
+\begin{itemize}
+    \item $B$ extracted bytes of the secret message
+\end{itemize}
+
+\begin{Algo}
+\item 
+Use a stego-key $K$ to create a permutation of quantized coefficients $D$.
+That is, $$Q := PERM_K(D),$$ where $PERM(\cdot)$ is a key-dependent
+permutation function and $Q$ denotes the permuted coefficient sequence.
+\item
+Divide $Q$ into two parts, $Q_1$ and $Q_2$, according to separation ratio $\alpha$.
+That is, $$Q_1 := Q[0 : \alpha * LEN(Q)],~ Q_2 := Q[\alpha * LEN(Q) : LEN(Q)],$$
+where $LEN(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
+$a$-th to $b$-th element (half-open interval, i.e. $b$-th element does not belong into slice).
+\item
+Extract the length $L_1$ of the embedded message from the $Q_1$, then extract $L_1 * 8$ bits of
+the embedded message $B'_1$ from $Q_1$ by using the following algorithm:
+\begin{lstlisting}
+if (c > 0 && isEven(c)) return 0;
+if (c < 0 && isOdd(c))  return 0;
+if (c > 0 && isOdd(c))  return 1;
+if (c < 0 && isEven(c)) return 1;
+\end{lstlisting}
+\item
+Similarly, extract the length $L_2$ of the embedded message from $Q_2$ and $L_2 * 8$ bits of the 
+embedded message $B'_2$ by using the following algorithm:
+\begin{lstlisting}
+if (c > 0 && isOdd(c))  return 0;
+if (c < 0 && isEven(c)) return 0;
+if (c > 0 && isEven(c)) return 1;
+if (c < 0 && isOdd(c))  return 1;
+\end{lstlisting}
+\item
+Convert bit sequences of the secret messages $B'_1$ and $B'_2$ to byte sequences $B_1$ and $B_2$.
+\item
+Combine $B_1$ and $B_2$ into single secret message $B$.
+\item 
+Return $B$.
+
+\end{Algo}
+
+\subsubsection{Tuning the parameters $\alpha$ and $\beta$}
+The original paper suggests that the separation ratio $\alpha$
+should be chosen from a~segment~$\left[ \frac{3}{4}, \frac{5}{6} \right]$
+and the adjustment parameter $\beta$ should be chosen from a~segment~ $\left[\frac{1}{8}, \frac{1}{3}\right]$ 
+(bigger $\beta$ positively correlates with
+better undetectability of the message). 
+In tests the authors have chosen
+values $\frac{4}{5}$ and $\frac{1}{3}$, respectively.
+
+\subsubsection{Limit for a message length}
+The authors of the algorithm implies that for chosen values of the parameters
+it is safe enough to use even $50\%$ of nonzero coefficients, i.e. the algorithm
+is still resistable to chi-square and S families of attacks. As for general measures
+of changing of the cover image, authors tell us that it is safe enough to use all
+nonzero coefficients available.
 
 \subsection{Cryptographic algorithm: AES}
 % TODO description and link to more specific paper
