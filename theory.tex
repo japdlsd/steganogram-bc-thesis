@@ -176,7 +176,6 @@ Input for the algorithm:
 \begin{itemize}
     \item $K$ steganographic key (seed for random generator)
     \item $\alpha$ separation ratio
-    \item $\beta$ adjustment parameter
     \item $D$ quantized DCT coefficients sequence with embedded message
 \end{itemize}
 
@@ -226,7 +225,7 @@ Return $B$.
 \subsubsection{Tuning the parameters $\alpha$ and $\beta$}
 The original paper suggests that the separation ratio $\alpha$
 should be chosen from a~segment~$\left[ \frac{3}{4}, \frac{5}{6} \right]$
-and the adjustment parameter $\beta$ should be chosen from a~segment~ $\left[\frac{1}{8}, \frac{1}{3}\right]$ 
+and the adjustment parameter $\beta$ should be chosen from a~segment~$\left[\frac{1}{8}, \frac{1}{3}\right]$ 
 (bigger $\beta$ positively correlates with
 better undetectability of the message). 
 In tests the authors have chosen
@@ -246,7 +245,11 @@ nonzero coefficients available.
 
 \subsection{Compression algorithm: GZIP}
 % TODO link to original paper or standard
-
+We are using GZIP algorithm mainly because it has been implemented in standard
+Java library as \texttt{java.util.zip.GZIPInputStream} and 
+\texttt{java.util.zip.GZIPOutputStream} classes. This compression
+is based on widely used algorithm DEFLATE, which is based on Huffman encoding and LZ77 algorithm.
+You can read more about this in \cite{deutsch1996deflate} and \cite{deutsch1996gzip}.
 
 \section{Resistance against additional compression}
 % TODO it is bad :)
