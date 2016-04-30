@@ -243,6 +243,14 @@ nonzero coefficients available.
 % TODO add link to implementation
 % TODO add link to the original paper
 
+We are using AES-256-CBC algorithm for encryption. It is a current standart
+solution for symmetric encryption. The algorithm is described here \cite{standard2001announcing}.
+
+One of the main problems of cryptography is a big chance to use it incorrectly.
+Therefore, we've decided to use an open implementation of it, provided by the package
+\texttt{com.scottyab.aescrypt.AESCrypt}. 
+
+
 \subsection{Compression algorithm: GZIP}
 % TODO link to original paper or standard
 We are using GZIP algorithm mainly because it has been implemented in standard
