@@ -1,6 +1,7 @@
-\chapter{Theoretical aspects of application}
-In this chapter we will takl about the communication protocol,
-describe used algorithms (with an accent on steganography), 
+\chapter{Theoretical aspects of the application}
+In this chapter we will talk about a structure of the main
+processes (embedding and extracting messages),
+describe used algorithms (with an accent on steganography) and 
 overview various possible communication channels (carriers).
 % TODO remove if won't be.
 We will also talk briefly about resistance of used algorithms
@@ -10,10 +11,32 @@ a user should follow to achieve maximum possible security
 and undetectability.
 
 
-\section{Communication scheme}
-In this section we will describe how the communication works.
+\section{Main processes}
+In this section we will describe
+the pipelines of embedding and extraction. 
 
-% TODO insert the communication diagram
+Embedding works in the following way: we start with obtaining the cover image
+(from a camera) and the secret message we want to send. Firstly we compress 
+the secret message. Secondly, we encrypt it with crypto key. Finally, we embed
+this message into the cover image using steganographic algorithm with stego key.
+
+Extraction works in reverse order: we start with extracting embedded bytes from
+the cover image (using stego key). Then we decrypt the message using crypto key
+and finally we decompress it. 
+
+Both pipelines are shown in the figure \ref{img:CSflow}.
+
+% pregenerovany pomocou dia (polozka pixbuf[png])
+\begin{figure}
+%vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+%obrazok je v subore images/cervik.png
+\centerline{\includegraphics[width=\textwidth]{diagrams/flow.png}}
+%popis obrazku
+\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+%id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+\label{img:CSflow}
+\end{figure}
+
 
 \section{Used algorithms}
 In this section we will describe algorithms that we used in our application
