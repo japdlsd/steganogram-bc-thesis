@@ -300,20 +300,20 @@ In this section we will enlist communication channels that are suitable for our 
 In this section we will describe common mistakes and give some advices on
 how to achieve maximum inconspicuousness.
 
-\paragraph{Never use the same image twice}
+\subsubsection{Never use the same image twice}
 
 Imagine a situation: the censor sees two visually identical message with little 
 differencies in thier digital representation. He may make only one conclusion: 
 the sender tries to manipulate the images to send some information. Therefore
 it is highly unrecommended to use similar images to steganography.
 
-\paragraph{Never send the same message twice}
+\subsubsection{Never send the same message twice}
 
 Imagine another situation: the censor sees two images, compare their DCT coefficients
 and sees the the pattern in their last bits (remember, the secret bits are embedded into
 the same positions). There is only one natural conclusion: the sender uses the steganography.
 
-\paragraph{Change your keys frequently}
+\subsubsection{Change your keys frequently}
 Firstly, the keys have tendency to be leaked. Secondly, with enough tapped communication,
 keys can be deduced with prior knowledge. Thirdly, modern stochastic statistical approaches 
 (neural networks, nonlinear programming, etc.) could theoretically distinguish images with
@@ -321,11 +321,11 @@ embedded messages from ''clean'' even without any knowledge of the algorithm, no
 the keys. Fixing the key (i.e. fixing the positions of the cofficients to be changed)
 would only help the attackers.
 
-\paragraph{Try to write your messages as short as possible}
+\subsubsection{Try to write your messages as short as possible}
 This rule has a simple explanation: shorter message means less changed coefficients, thus
 lesser distortion in statistical properties of an image, therefore better undetectability.
 
-\paragraph{Generate your seceret keys by app's utilities, not by hand}
+\subsubsection{Generate your seceret keys by app's utilities, not by hand}
 Another general advice: small human-generated passwords are easier to break (dictionary attack,
 bruteforce, etc.). All basic advices for choosing a password are applicable here: long passwords
 with nonstandard symbols (numbers, special symbols, uppercase, etc.) are generally better.
