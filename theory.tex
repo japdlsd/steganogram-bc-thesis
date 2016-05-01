@@ -239,9 +239,6 @@ of changing of the cover image, authors tell us that it is safe enough to use al
 nonzero coefficients available.
 
 \subsection{Cryptographic algorithm: AES}
-% TODO description and link to more specific paper
-% TODO add link to implementation
-% TODO add link to the original paper
 
 We are using AES-256-CBC algorithm for encryption. It is a current standart
 solution for symmetric encryption. The algorithm is described here \cite{standard2001announcing}.
@@ -252,7 +249,6 @@ Therefore, we've decided to use an open implementation of it, provided by the pa
 
 
 \subsection{Compression algorithm: GZIP}
-% TODO link to original paper or standard
 We are using GZIP algorithm mainly because it has been implemented in standard
 Java library as \texttt{java.util.zip.GZIPInputStream} and 
 \texttt{java.util.zip.GZIPOutputStream} classes. This compression
@@ -260,14 +256,44 @@ is based on widely used algorithm DEFLATE, which is based on Huffman encoding an
 You can read more about this in \cite{deutsch1996deflate} and \cite{deutsch1996gzip}.
 
 \section{Resistance against additional compression}
-% TODO it is bad :)
+
+In this section we will shortly decribe the possibilities of compression-resistant
+steganography.
+
+Recompression of a JPEG image has a lot of parameters. Main are the size of an image
+and the quality ratio (described in section \ref{sec:jpeg}), but there is a plenty of
+secondary ones, like encoding the pixels in RGB or in YCrCb, rounding of Cb and Cr channels
+(8 bytes or 4 bytes), and so on.
+
+Good news are that the most of these factors can be dealt with by simply choosing a cover
+image with the same parameters as the result of the additional comprimation (assuming 
+these parameters aren't going to change).   
+
+The are two problematic ones: the size and the quality ratio, as they could be change
+from device to device (e.g. Facebook Messenger generally shows images in better 
+quality for Apple smartphones that Android ones). 
+
+We can deal with the size of an image by choosing the one the communication channel 
+would use for the given ends of a channel (i.e. the two given mobile phones). Otherwise,
+this issue is quite hard to reliably solve, as changing of the size would result in
+merging the adjacent blocks of an image, erasing the values of last bits of the DCT coefficients,
+ruining any DCT-based steganography.
+
+We can, in theory, deal with the change of quality ratio by using error-correction codes.
+The main issue is that lowering of the quality would result in nullifying the coefficients,
+thus shifitng the space the algorithm would search for a hidden message. It can be seen
+as the erasing of message symbols in general coding theory. It could be dealt with
+by permuting the whole blocks, not the individual coefficients.
+
+Another issue is that the error-correction would result in longer message and, therefore,
+higher change of detection.
+
+In our application, we decided not to implement the compression-resistant algorithm.
 
 
 \section{Communication channels}
 In this section we will enlist communication channels that are suitable for our purpose.
 % TODO really? :D
-
-
 
 
 \section{How to use the application correctly}
