@@ -14,12 +14,39 @@ The application has been developed and tested on Android OS 4.4 .
 
 \section{Overview of the design}
 In this section we will show the general architecture of the application
-and describe the main parts (e.g. classes, interfaces).
+and describe the main parts.
 
+Our goal was to separate the interface and internal logic. We've achiveved that
+by creating ''junction'' class \texttt{Solution}, which has been inserted between
+Android-specific interface code and steganographic core, so that code, responsing for
+the interface, is working only with this layer.
 
+Now we will walk through all major functions of our application and describe what is going on inside.
 
-% TODO try to overview it by its functions: "what happened when we want to embed the message"
+\subsection{Embedding process}
 
+An user types a secret message he wants to embed into an image. Then he takes a photo with 
+phone's camera. Then he clicks a button ''Start embedding''. The program checks, whether 
+an image is accessible, and then calls function \texttt{Solution.embed()}.
+
+\texttt{Solution} object decodes a string with the secret message into a byte array,
+compress it, encrypts it and then calls a function \texttt{info.guardianproject.f5android.Embed()},
+which we borrowed from another open-source steganographic application \emph{Pixelknot} by Guardian
+Project (mailny the correct implementation of encoding/decoding images into and from the JPEG format). 
+This function extract DCT coefficients from the taken image,  applies our steganographic
+algorithm, implemented as \texttt{DCTsteganographyCERep} class, and then envelops the changed coefficients
+back to the cover image, which is then saved into the phone's Gallery.
+
+\subsection{Extracting process}
+
+An user chooses an image with embedded image from a Gallery and clicks on ''Start extracting'' button.
+The program calls function \texttt{Solution.extract()}.
+
+\texttt{Solution} object sends the image into the \texttt{info.guardianproject.f5android.Extract()} function,
+which extracts DCT coefficients from the image and then applies the reverse pipeline: calls the extraction
+function \texttt{DCTSteganographyCERep.extract()}, which returns the embedded bytes, then decrypt
+and decompress them. Then the \texttt{Solution} object calls the callback function with the resulting
+message back into the interface code, which shows it on the display.
 
 \section{Algorithms' settings}
 In this section we will show concrete parameters of all used algorithms.
@@ -36,11 +63,14 @@ We've set maximum length of a block as 2 byte word, so the maximum length is
 $2^{16} = 65536$ bytes. Therefore, the maximum length of embedded message is 
 $2^{16} (2 - \alpha) = 2^{16} (2 - 0.8) = 78643$ bytes.
 
-\subsection{Generation of steganographic keys}
-
 \subsection{Cryptographic algorithm AES}
 
-\subsection{Generation of cryptographic keys}
+We use AES-256 algorithm in CBC mode with a zero initial vector (IV). These are the default
+settings of the library \texttt{com.scottyab.aescrypt.AESCrypt}, which we use.
+
+\subsection{Compression algorithm GZIP}
+
+We use default Java library classes for GZIP compression with default settings.
 
 \section{How to replace used algorithms}
 In this section we will decribe the interfaces of used algorithms.
@@ -100,7 +130,7 @@ message.
 Function \texttt{decrypt} takes one argument --- a byte array that represents
 an encrypted message and returns a byte array representing the original message.
 
-\begin{lstlisting} 
+\begin{lstlisting}
 public interface SymmetricEncryption {
     boolean loadKeyFromString (final String s);
     String generateCryptoKeyString ();
