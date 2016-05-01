@@ -267,21 +267,48 @@ You can read more about this in \cite{deutsch1996deflate} and \cite{deutsch1996g
 In this section we will enlist communication channels that are suitable for our purpose.
 % TODO really? :D
 
+
+
+
 \section{How to use the application correctly}
 In this section we will describe common mistakes and give some advices on
 how to achieve maximum inconspicuousness.
 
 \paragraph{Never use the same image twice}
 
+Imagine a situation: the censor sees two visually identical message with little 
+differencies in thier digital representation. He may make only one conclusion: 
+the sender tries to manipulate the images to send some information. Therefore
+it is highly unrecommended to use similar images to steganography.
+
 \paragraph{Never send the same message twice}
 
-\paragraph{Change your keys frequently}
+Imagine another situation: the censor sees two images, compare their DCT coefficients
+and sees the the pattern in their last bits (remember, the secret bits are embedded into
+the same positions). There is only one natural conclusion: the sender uses the steganography.
 
-\paragraph{Use small images}
-% TODO or rather bigg? vivid? black-white?
+\paragraph{Change your keys frequently}
+Firstly, the keys have tendency to be leaked. Secondly, with enough tapped communication,
+keys can be deduced with prior knowledge. Thirdly, modern stochastic statistical approaches 
+(neural networks, nonlinear programming, etc.) could theoretically distinguish images with
+embedded messages from ''clean'' even without any knowledge of the algorithm, not mentioning
+the keys. Fixing the key (i.e. fixing the positions of the cofficients to be changed)
+would only help the attackers.
 
 \paragraph{Try to write your messages as short as possible}
+This rule has a simple explanation: shorter message means less changed coefficients, thus
+lesser distortion in statistical properties of an image, therefore better undetectability.
 
-\paragraph{Generate your keys by app's utilities, not by hand}
+\paragraph{Generate your seceret keys by app's utilities, not by hand}
+Another general advice: small human-generated passwords are easier to break (dictionary attack,
+bruteforce, etc.). All basic advices for choosing a password are applicable here: long passwords
+with nonstandard symbols (numbers, special symbols, uppercase, etc.) are generally better.
+
+We recommend to use standard in-app utility to generate the keys.
+
+If you decide to generate the password by yourself, 
+we recommend to stay in a set of ASCII characters for simplier key distribution (although keys are
+stored as UTF-8 strings, so you can potentially use even non-latin symbols 
+(Japan hyerogliphs, Arabic symbols, cyrillic, etc.)).
 
 % TODO something about key management?
