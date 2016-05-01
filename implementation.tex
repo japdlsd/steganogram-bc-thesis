@@ -40,18 +40,39 @@ $2^{16} (2 - \alpha) = 2^{16} (2 - 0.8) = 78643$ bytes.
 
 \subsection{Generation of cryptographic keys}
 
-\section{How to change used algorithms}
-In this section we will show the object design of our application
-and tell how to change used algorithms with another.
+\section{How to replace used algorithms}
+In this section we will decribe the interfaces of used algorithms.
 
 \subsection{Steganographic algorithm interface}
+\texttt{DCTSteganography} interface has four functions.
+
+Function \texttt{loadKeyFromString} takes one argument --- 
+a string representation of a steganographic key. It returns
+\texttt{true} if the key was successfully extracted and
+\texttt{false} otherwise.
+
+Function \texttt{generateStegoKeyString} returns a 
+valid string representation of a newly created steganographic key 
+(this string should be parseable by function \texttt{loadKeyFromString}).
+
+Function \texttt{embed} takes two arguments: an integer array \texttt{coeffOrig}
+representing quantized DCT coefficients of a cover image and an \texttt{InputStream} 
+with bytes of a secret message we want to embed into the cover image. 
+This function returns nothing, but it embeds the secret message into
+the DCT coefficients. 
+
+Function \texttt{extract} takes two arguments: an integer array \texttt{coeffOrig}
+representing qunatized DCT coefficients of a cover image with embedded message
+and an \texttt{ExtractionListener} that have to be called with the extracted message
+as an argument.
+
 \begin{lstlisting} 
 public interface DCTSteganography {
     boolean loadKeyFromString (final String s);
     String generateStegoKeyString ();
 
     void embed (int[] coeffOrig, 
-            final InputStream embeddedData, int shuffleIndex);
+            final InputStream embeddedData);
 
     void extract (int[] coeffOrig,  
             ByteArrayOutputStream fos, Extract.ExtractionListener listener);
@@ -59,6 +80,24 @@ public interface DCTSteganography {
 \end{lstlisting}
 
 \subsection{Cryptographic algorithm interface}
+\texttt{SymmetricEncryption} interface has four functions.
+
+Function \texttt{loadKeyFromString} takes one argument --- 
+a string representation of a cryptographic key. It returns
+\texttt{true} if the key was successfully extracted and
+\texttt{false} otherwise.
+
+Function \texttt{generateCryptoKeyString} returns a 
+valid string representation of a newly created cryptographic key 
+(this string should be parseable by function \texttt{loadKeyFromString}).
+
+Function \texttt{encrypt} takes one argument --- a byte array that represents
+a message to be encrypted and returns a byte array representing the encrypted
+message.
+
+Function \texttt{decrypt} takes one argument --- a byte array that represents
+an encrypted message and returns a byte array representing the original message.
+
 \begin{lstlisting} 
 public interface SymmetricEncryption {
     boolean loadKeyFromString (final String s);
@@ -69,10 +108,21 @@ public interface SymmetricEncryption {
 \end{lstlisting}
 
 \subsection{Compression algorithm interface}
+
+\texttt{Compression} interface has two functions:
+\texttt{compress} and \texttt{decompress}. 
+
+Function \texttt{compress}
+takes one argument --- a~byte~array representing a~message and returns
+a~byte~array with compressed message. 
+
+Function \texttt{decompress}
+takes one argument~---~a~byte~array representing a~compressed message
+and returns a~byte~array with an~original message.
+
 \begin{lstlisting} 
 public interface Compression {
     byte[] compress (byte[] message);
     byte[] decompress (byte[] message);
 }
 \end{lstlisting}
-
