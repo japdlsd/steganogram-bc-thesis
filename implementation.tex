@@ -84,6 +84,32 @@ than performing a random pick from a set based on random bytes.
 
 We use default Java library classes for GZIP compression with default settings.
 
+\section{Testing the steganographic algorithm}
+
+We decided to test whether the main parts of the steganographic algorithm
+are correct, i.e. whether the paired transformations are mutually inverse.
+
+The steganographic algorithm has three main pairs of transformation functions:
+\begin{itemize}
+    \item \texttt{encodeBits2Byte} and \texttt{encodeByte2Bits} 
+        --- encoding a byte as a bit array (little endian encoding)
+    \item \texttt{encodeInt2Bytes} and \texttt{encodeBytes2Int}
+        --- encoding an integer as a byte array of a fixed length
+    \item \texttt{embedBit} and \texttt{extractBit} 
+        --- embedding a secret bit into a DCT coefficient and vice versa
+        according to our steganographic algorithm
+\end{itemize}
+
+As the functions has only small finite amount of possible inputs, we've decided
+to test them exhaustively (i.e. on every possible input).
+
+During the tests, we've found that the embedding algorithm from the original
+paper \cite{liu2008high} was incorrect. We've been able to pinpoint and correct
+the error thanks to a decription of the inverse process in the paper. In this 
+paper we give the correct implementation of this algorithm (and by that we mean
+that the functions \texttt{embedBit} and \texttt{extractBit} are mutually inverse).
+You can find the description of the error in the listing in the subsection \ref{sssec:therory-embedding}.
+
 \section{How to replace used algorithms}
 In this section we will decribe the interfaces of used algorithms.
 
