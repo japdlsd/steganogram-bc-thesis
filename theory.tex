@@ -256,6 +256,7 @@ is based on widely used algorithm DEFLATE, which is based on Huffman encoding an
 You can read more about this in \cite{deutsch1996deflate} and \cite{deutsch1996gzip}.
 
 \section{Resistance against additional compression}
+\label{sec:addcomp}
 
 In this section we will shortly decribe the possibilities of compression-resistant
 steganography.
@@ -290,12 +291,6 @@ higher change of detection.
 
 In our application, we decided not to implement the compression-resistant algorithm.
 
-
-\section{Communication channels}
-In this section we will enlist communication channels that are suitable for our purpose.
-% TODO really? :D
-
-
 \section{How to use the application correctly}
 In this section we will describe common mistakes and give some advices on
 how to achieve maximum inconspicuousness.
@@ -325,7 +320,12 @@ would only help the attackers.
 This rule has a simple explanation: shorter message means less changed coefficients, thus
 lesser distortion in statistical properties of an image, therefore better undetectability.
 
-\subsubsection{Generate your seceret keys by app's utilities, not by hand}
+\subsubsection{Use only lossless communication channels}
+As described in the section \ref{sec:addcomp}, additional compression could and probably
+would destroy the hidden message. There are many lossless channels: e-mail, Dropbox, Google Drive,
+Google Photos, Telegram messenger, Skype, etc.
+
+\subsubsection{Generate your secret keys by app's utilities, not by hand}
 Another general advice: small human-generated passwords are easier to break (dictionary attack,
 bruteforce, etc.). All basic advices for choosing a password are applicable here: long passwords
 with nonstandard symbols (numbers, special symbols, uppercase, etc.) are generally better.
