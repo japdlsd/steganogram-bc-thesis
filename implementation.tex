@@ -68,6 +68,18 @@ $2^{16} (2 - \alpha) = 2^{16} (2 - 0.8) = 78643$ bytes.
 We use AES-256 algorithm in CBC mode with a zero initial vector (IV). These are the default
 settings of the library \texttt{com.scottyab.aescrypt.AESCrypt}, which we use.
 
+\subsection{Secret keys generation}
+Both steganographic and cryptographic keys are arbitrary UTF-8 strings. We generate 
+them by generating 60 random bytes with \texttt{SecureRandom} class from the standard
+Java library \texttt{java.security} and then encoding them into \emph{Base64} strings.
+We've chosen the length of the key to be divisible by $3$ so that the resulting
+Base64 string would not have a padding. 
+You can read more about Base64 enoding here \cite{josefsson2006base16}.
+
+We've chosen the Base64 encoding as it encodes the bytes into the most common set
+of printable characters and is faster (and easier to implement correctly) 
+than performing a random pick from a set based on random bytes.
+
 \subsection{Compression algorithm GZIP}
 
 We use default Java library classes for GZIP compression with default settings.
