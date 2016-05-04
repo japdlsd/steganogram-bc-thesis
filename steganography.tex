@@ -231,16 +231,14 @@ specifically constructed statistics $S$ of the original and compressed images.
 
 \TODO detailed description
 
-\subsection{Complementary embedding algorithm (Liu and Liao)}
+\subsection{Complementary embedding algorithm (CE)}
 
-This algorithms is designed to fight with both S and chi-square attacks families.
+This algorithms was designed to be resistant against both S and chi-square attacks families.
 
-It divides secret message into 2 parts, and embed it at randomly chosen DCT coefficients,
-but for first part, it encodes bits by adding one to DCT coefficient if the value of 
-secret bit is 1, and for the second part, it subtract 1 instead. Therefore, as the article
-\cite{liu2008high} shows, it can successfully pass through both of these tests.
-
-\TODO reference to chapter 3
+Because it's the algorithm we had used in our application, 
+we've decided to put the description of this algorithm in chapter \ref{chap:theory}
+along with the decsriptions of other used algorithms (you can find it in the subsection
+\ref{ssec:ce}).
 
 \subsection{Bernford law}
 
