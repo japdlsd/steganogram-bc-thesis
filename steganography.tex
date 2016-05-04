@@ -12,7 +12,7 @@ Steganography is an art of hiding information. The difference between steganogra
 cryptography is that the goal of cryptography is to hide the content of message, whereas
 the goal of steganography is to conceal the very fact that the message exists.
 
-\paragraph{A bit of terminology}
+\subsubsection{A bit of terminology}
 
 Information, which we want to hide, is often called \textit{secret message}. The object,
 in which we want to embed our secret message, is often called \textit{cover message} (or, in our case,
@@ -49,7 +49,7 @@ How to hide messages in lossless image formats and why it isn't a good idea.
 \label{sec:jpeg}
 
 JPEG format provides many options for storing images. We will talk about
-one of the most common versions. %For further details we recommend to read \TODO source.
+one of the most common versions. For further details we recommend to read \TODO source.
 
 Input of compression algorithm is a raw image with pixels encoded
 in RGB model (each pixel is encoded as three 8-bit numbers, representing
@@ -66,7 +66,7 @@ Compression consists of several steps:
     \item (Lossless) compression of coefficients (main compression operation)
 \end{enumerate}
 
-\subsection{Color space transformation}
+\subsubsection{Color space transformation}
 
 Pixels are transformed from RGB to YCbCr color space. Y channel represents
 brightness of a pixel ({which can be viewed as greyscale copy of the original image}),
@@ -89,7 +89,7 @@ right lower --- Cr channel.}
 \label{img:YCbCr}
 \end{figure}
 
-\subsection{Downsampling}
+\subsubsection{Downsampling}
 
 Human eye is more sensitive to small changes of brightness rather 
 than small changes in the hue and color saturation. Using that fact, 
@@ -99,16 +99,15 @@ to an image.
 There are many options, but one of the most used is to use 4 bits instead of 8
 to represent Cr and Cb and 8 bits to represent Y channel (so Y channel is left unchanged).
 
-\subsection{Splitting into blocks}
+\subsubsection{Splitting into blocks}
 
 Each channel is divided into $8 \times 8$ bytes long blocks and 
 then processed separately. If channel is not exact multiple of block size,
 then incomplete blocks are filled with fake values (there are several
 methods to construct them, but details are irrelevant for our purposes. 
-%For further information, you may read \TODO source
-).
+For further information, you may read \TODO source).
 
-\subsection{Discrete cosine transformation}
+\subsubsection{Discrete cosine transformation}
 
 \begin{comment}
 Each block could be seen as finite integer sequence.
@@ -141,7 +140,7 @@ so we can store coefficients of linear combination instead of the original value
 
 
 
-\subsection{Rounding of DCT coefficients}
+\subsubsection{Rounding of DCT coefficients}
 
 Here we use two facts. First, DCT basis functions varies from simple
 to very complex. Second, human eye is less capable to distinguish such
@@ -153,21 +152,19 @@ The level of quantization is defined by demanded quality ratio.
 The most fine quailty $Q=100\%$ let all coefficients be rounded to whole numbers,
 so it still would be lossy operation.
 
-\subsection{Lossless compression of DCT coefficients}
+\subsubsection{Lossless compression of DCT coefficients}
 
 Another interesting property of DCT is that the coefficients
 of last basis functions are often very small (because DCT "tries"
 to express image with the first sinusoids). Therefore, after
 quantisation process many of DCT coefficients could be zero.
 
-\begin{comment}
 The coefficients in each block are ordered in so called \emph{zigzag}
 order (by the diagonals from the left upper corner of the block) and
 then encoded by Huffman encoding \TODO the ending.
 
 \TODO add an image of the zigzag order
 
-\end{comment}
 
 As could be expected, long sequences of zeros could be efficiently
 compressed, and therefore significant compress ratio could be achieved.
@@ -178,7 +175,6 @@ compressed, and therefore significant compress ratio could be achieved.
 
 \textit{This section is based on article \cite{liu2008high}.}
 
-\TODO discuss the need of stegokey
 
 An image encoded in JPEG format could be seen as a bunch of (quantized)
 DCT coefficients, which are just regular integer numbers. One of the
@@ -233,7 +229,6 @@ This approach can be broken using S family attack.
 This attack is based on further compression of cover image and comparing 
 specifically constructed statistics $S$ of the original and compressed images.
 
-% Details can be read here \TODO source.
 \TODO detailed description
 
 \subsection{Complementary embedding algorithm (Liu and Liao)}

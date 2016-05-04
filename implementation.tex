@@ -51,7 +51,7 @@ message back into the interface code, which shows it on the display.
 \section{Algorithms' settings}
 In this section we will show concrete parameters of all used algorithms.
 
-\subsection{Steganographic algorithm CE}
+\subsubsection{Steganographic algorithm CE}
 
 \paragraph{Separation ratio $\alpha$} We've chosen the same value as in the 
 paper: $0.8$.
@@ -63,12 +63,14 @@ We've set maximum length of a block as 2 byte word, so the maximum length is
 $2^{16} = 65536$ bytes. Therefore, the maximum length of embedded message is 
 $2^{16} (2 - \alpha) = 2^{16} (2 - 0.8) = 78643$ bytes.
 
-\subsection{Cryptographic algorithm AES}
+\subsubsection{Cryptographic algorithm AES}
 
 We use AES-256 algorithm in CBC mode with a zero initial vector (IV). These are the default
 settings of the library \texttt{com.scottyab.aescrypt.AESCrypt}, which we use.
 
-\subsection{Secret keys generation}
+\TODO add a description of nonconstant IV version.
+
+\subsubsection{Secret keys generation}
 Both steganographic and cryptographic keys are arbitrary UTF-8 strings. We generate 
 them by generating 60 random bytes with \texttt{SecureRandom} class from the standard
 Java library \texttt{java.security} and then encoding them into \emph{Base64} strings.
@@ -80,7 +82,7 @@ We've chosen the Base64 encoding as it encodes the bytes into the most common se
 of printable characters and is faster (and easier to implement correctly) 
 than performing a random pick from a set based on random bytes.
 
-\subsection{Compression algorithm GZIP}
+\subsubsection{Compression algorithm GZIP}
 
 We use default Java library classes for GZIP compression with default settings.
 
@@ -113,7 +115,7 @@ You can find the description of the error in the listing in the subsection \ref{
 \section{How to replace used algorithms}
 In this section we will decribe the interfaces of used algorithms.
 
-\subsection{Steganographic algorithm interface}
+\subsubsection{Steganographic algorithm interface}
 \texttt{DCTSteganography} interface has four functions.
 
 Function \texttt{loadKeyFromString} takes one argument --- 
@@ -149,7 +151,7 @@ public interface DCTSteganography {
 }
 \end{lstlisting}
 
-\subsection{Cryptographic algorithm interface}
+\subsubsection{Cryptographic algorithm interface}
 \texttt{SymmetricEncryption} interface has four functions.
 
 Function \texttt{loadKeyFromString} takes one argument --- 
@@ -177,7 +179,7 @@ public interface SymmetricEncryption {
 }
 \end{lstlisting}
 
-\subsection{Compression algorithm interface}
+\subsubsection{Compression algorithm interface}
 
 \texttt{Compression} interface has two functions:
 \texttt{compress} and \texttt{decompress}. 

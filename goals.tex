@@ -20,7 +20,7 @@ this purpose, and we've chosen \emph{JPEG} as the most suitable.
 \section{Functional reqiurements}
 In this section we will discuss \emph{which} tasks our application has to be able to perform.
 
-\subsection{Embedding and extracting of messages into images}
+\subsubsection{Embedding and extracting of messages into images}
 Main function is to embed text message into JPEG files from the phone's camera using steganography.
 
 The steganographic algorithm must be key-based, as for in the opposite case it would be very for an attacker
@@ -29,7 +29,7 @@ to extract the hidden message (you can read more on this in \cite{Ostertag1996})
 The application should forbid to use images from phone's memory, for it could lead to multiple 
 using of the same image, which is \emph{very bad} for user's inconspicuousness.
 
-\subsection{Message encryption}
+\subsubsection{Message encryption}
 The application has to be able to encrypt and decrypt the message. This also contributes
 to undetectability of the secret message, as the result of extracting still would be 
 undistinguishable from a random noise.
@@ -41,11 +41,11 @@ send the same message many times with different keys, whether embedded in one
 image (which would make the detection easier) or in many images (which would
 also increase suspicion).
 
-\subsection{Message compression}
+\subsubsection{Message compression}
 The secret message has to compressed in order to take minimum possible space in medium,
 as bigger changes in medium are easier to detect.
 
-\subsection{Key management}
+\subsubsection{Key management}
 Our application has to be able to genererate secure keys for steganographic and
 cryptographic algoritmhs. It is also should be possible to share a key with someone
 else (in order to communicate).
@@ -56,7 +56,7 @@ this feature, as if a user and his mobile phone are already in hands of the cens
 a matter of time when he would give up his master key. The whole purpose of our application
 is to avoid the contact with the censors.
 
-\subsection{Optimal conditions of undetectability}
+\subsubsection{Optimal conditions of undetectability}
 Our application has to be able to decide whether it is sufficiently secure to 
 send a message of given length. 
 
@@ -66,20 +66,20 @@ send a message of given length.
 In this section we will discuss requirements on \emph{how} our application has
 to perform its tasks.
 
-\subsection{Support of UTF-8}
+\subsubsection{Support of UTF-8}
 Our application is meant to be used all around the world, and not all languages use
 Latin alphabet to encode it (e.g. Arabic, Russian). 
 
-\subsection{Interchangeability of algorithms}
+\subsubsection{Interchangeability of algorithms}
 As steganography and steganalysis develop very quickly, our application
 has to have the ability to easily change used algorithms.  
 
-\subsection{Openness of the code}
+\subsubsection{Openness of the code}
 No one can trust an application that has closed source code (not only because
 this code could be harmful, but also because no one can check whether all
 methods were implemented correctly).
 
-\subsection{Ability to withstand additional compression}
+\subsubsection{Ability to withstand additional compression}
 Many social media are known to compress any images that are sent through
 their systems. We'd like to analyse whether it is possible to save the information
 in the image inspite of comression (e.g. by using error correction encoding).

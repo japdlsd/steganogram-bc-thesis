@@ -3,7 +3,6 @@ In this chapter we will talk about a structure of the main
 processes (embedding and extracting messages),
 describe used algorithms (with an accent on steganography) and 
 overview various possible communication channels (carriers).
-% TODO remove if won't be.
 We will also talk briefly about resistance of used algorithms
 against additional compression of image with embedded message.
 We will end this chapter with a list of ''good practices''
@@ -44,11 +43,9 @@ and discuss their suitness for our purpose.
 We have had to find a balance between potential quality of the algorithms 
 and the cost of their implementation and usage.
 
-% TODO find a better way to say it?
 \textit{We'd like to mention that these algorithms are not the product of our work.}
 
 \subsection{Steganographic algorithm: Complementary embedding (CE)}
-% TODO link to the whole paper
 
 This algorithm was proposed by Chiang-Lung~Liu and Shiang-Rong~Liao in \cite{liu2008high}.
 We've chosen this algorithm as it has better steganographic properties than the ''unofficial
@@ -337,5 +334,3 @@ If you decide to generate the password by yourself,
 we recommend to stay in a set of ASCII characters for simplier key distribution (although keys are
 stored as UTF-8 strings, so you can potentially use even non-latin symbols 
 (Japan hyerogliphs, Arabic symbols, cyrillic, etc.)).
-
-% TODO something about key management?
