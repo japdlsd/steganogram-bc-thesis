@@ -36,10 +36,14 @@ guarantee that this object doesn't carry any message, as sometimes it could carr
 So instead another method is often used: whether the attacker can predict (or rather guess) the
 length of embedded message.
 
+\TODO some concrete stuff about measuring the strength
+
 \section{Image-based steganography}
 \label{sec:image-steganography}
 
 How to hide messages in lossless image formats and why it isn't a good idea.
+
+\TODO lossless images stego and discussion about suitability
 
 \section{JPEG compression algorithm}
 \label{sec:jpeg}
@@ -146,7 +150,8 @@ basis functions with less definition (in other words, quantize them).
 
 The level of quantization is defined by demanded quality ratio.
 
-The most fine quailty $Q=100\%$ let all coefficients be rounded to whole numbers.
+The most fine quailty $Q=100\%$ let all coefficients be rounded to whole numbers,
+so it still would be lossy operation.
 
 \subsection{Lossless compression of DCT coefficients}
 
@@ -154,6 +159,15 @@ Another interesting property of DCT is that the coefficients
 of last basis functions are often very small (because DCT "tries"
 to express image with the first sinusoids). Therefore, after
 quantisation process many of DCT coefficients could be zero.
+
+\begin{comment}
+The coefficients in each block are ordered in so called \emph{zigzag}
+order (by the diagonals from the left upper corner of the block) and
+then encoded by Huffman encoding \TODO the ending.
+
+\TODO add an image of the zigzag order
+
+\end{comment}
 
 As could be expected, long sequences of zeros could be efficiently
 compressed, and therefore significant compress ratio could be achieved.
@@ -201,6 +215,8 @@ distribution, from which this attack got its name.
 This attack could be extended to random writing (i.e. that DCT coeficients to write next bit
 are chosen randomly), so we can speak about \textit{extended chi-square attack}.
 
+\TODO more detailed description
+
 \subsection{F5 algorithm}
 
 In order to defend against chi-square attack, Westfield and Pfitzmann proposed F5 algorithm.
@@ -210,12 +226,15 @@ chi-square attack.
 
 This approach can be broken using S family attack.
 
+\TODO add detailed description
+
 \subsection{S family attack}
 
 This attack is based on further compression of cover image and comparing 
 specifically constructed statistics $S$ of the original and compressed images.
 
 % Details can be read here \TODO source.
+\TODO detailed description
 
 \subsection{Complementary embedding algorithm (Liu and Liao)}
 
@@ -225,6 +244,8 @@ It divides secret message into 2 parts, and embed it at randomly chosen DCT coef
 but for first part, it encodes bits by adding one to DCT coefficient if the value of 
 secret bit is 1, and for the second part, it subtract 1 instead. Therefore, as the article
 \cite{liu2008high} shows, it can successfully pass through both of these tests.
+
+\TODO reference to chapter 3
 
 \subsection{Bernford law}
 

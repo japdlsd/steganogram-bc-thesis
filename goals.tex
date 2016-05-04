@@ -22,6 +22,10 @@ In this section we will discuss \emph{which} tasks our application has to be abl
 
 \subsection{Embedding and extracting of messages into images}
 Main function is to embed text message into JPEG files from the phone's camera using steganography.
+
+The steganographic algorithm must be key-based, as for in the opposite case it would be very for an attacker
+to extract the hidden message (you can read more on this in \cite{Ostertag1996}).
+
 The application should forbid to use images from phone's memory, for it could lead to multiple 
 using of the same image, which is \emph{very bad} for user's inconspicuousness.
 
