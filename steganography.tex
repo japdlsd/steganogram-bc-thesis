@@ -192,26 +192,69 @@ keep intact various statistical properties of resulting numbers.
 
 \subsection{JSteg library (direct LSB)}
 
-This library embed secret message in LSB of DCT coefficients sequentially,
-but it skips coefficients which are equal to $0$ or $1$. This way the amount
-of 0s and 1s is kept intact.
+This library embed secret message in least significant bits of DCT coefficients sequentially.
 
-But this approach is really unsecure as it can be easily detected by so called
-\textit{chi-square attack}.
+This approach was quite common for a period of time (there were even algorithms that performed such embedding
+in lossless images), but in year 1999 Westfeld and Pfitzmann came up with a so called \textit{chi-square attack}.
 
 \subsection{Chi-square attack}
 
+As you can see in the original paper \cite{westfeld1999attacks}, 
+this attack was initially pointed against algorithms with lossless cover images, 
+but this approach can be applied for JPEG images too.
+
+Westfeld and Pfitzmann pointed out, that relative amount of values of the DCT coefficients (or pixels in the original paper), 
+which differ only in their LSB (so called \textit{paired values}, or \textit{PoV}), is mostly very far from equal 
+(i.e. there it is more probable that there would be $1000$ coefficients with value $30$ and $4000$ coefficients with value $31$
+than that there would $2500$ of each).
+
 Assuming that 0 and 1 bits are distributed uniformly in the secret message 
 (which is usually the case for compressed and/or encrypted message), relative
-amount of values, which differ only in their LSB (so called \textit{paired values}),
-becomes equal. And assuming sequential writing in DCT coefficients, one can test
+amount of PoVs becomes equal. And assuming sequential writing in DCT coefficients, one can test
 whether paired values show such behaviour. The corresponding statistics has chi-square
 distribution, from which this attack got its name.
 
-This attack could be extended to random writing (i.e. that DCT coeficients to write next bit
-are chosen randomly), so we can speak about \textit{extended chi-square attack}.
+Let there be $M$ different PoV in the image (e.g. one pair could be $20$-$21$). Let $N_{k, 0}$ ($k \in \{ 1, \ldots, M\}$)
+denote the amount of coefficients of $k$-th PoV with $0$ in the least significant bit. Analogically,
+$N_{k, 1}$ would denote the amount of coefficients with $1$ in the least significant bit. 
+Let denote $N_k := N_{k, 0} + N_{k, 1}$. It is important that the LSB steganography does not change
+any of $N_k$.
+ 
+Let our null hypothesis be that an encrypted message (with uniform distribution of $0$ and $1$) 
+was embedded into these coefficients (and alternative 
+hypothesis would be the opposite sentence). Assuming the null hypothesis, we can see $N_{k, 0}$ as a random
+variable following binomical distribution with $n = N_k$ and $p = \frac{1}{2}$, i.e.
+$$N_{k, 0} \sim Bin\left(N_k, \frac{1}{2}\right)$$
+This distribution can be approximated with normal distribution, i.e.
+$$N_{k, 0} \overset{\cdot}{\sim} N\left(\frac{N_k}{2}, \frac{N_k}{4}\right)$$
+We can then normalize that variable to $N(0, 1)$ distribution, i.e.
+$$ \tilde{N}_{k, 0} := \frac{N_{k, 0} - \frac{N_k}{2}}{\sqrt{\frac{N_k}{4}}}  \overset{\cdot}{\sim} N( 0, 1)$$
 
-\TODO more detailed description
+Then the sum of squares of such random variables $\tilde{N}_{k, 0}$ would approxiamtely follow the $\chi^2$ distribution with $M-1$
+degrees of freedom (we subract one because the sum of all variables is fixed), i.e.
+$$\sum_{k = 1}^{M} \tilde{N}^{2}_{k, 0} \overset{\cdot}{\sim} \chi^2_{M-1}$$
+
+We can simplify the expression a bit to get the final statistics: 
+$$\sum_{k = 1}^{M} \tilde{N}^{2}_{k, 0} = 
+\sum_{k = 1}^{M} \left(  \frac{N_{k, 0} - \frac{N_k}{2}}{\sqrt{\frac{N_k}{4}}}  \right)^2 =
+\sum_{k = 1}^{M} \frac{\left(N_{k, 0} - \frac{N_k}{2}\right)^2}{\frac{N_k}{4}} = 
+\sum_{k = 1}^{M} \frac{\left(2 N_{k, 0} - N_k\right)^2}{N_k}
+=: T
+$$ 
+
+Now we can construct a test for our hypothesis. We can do it, for example, by evaluating
+the $(1 - \alpha)\%$ confidence interval ($\alpha$ is usually chosen as $5\%$) for $\chi^2$ distribution, which is equal to 
+$\left( \chi^2_{M-1}\left(\frac{\alpha}{2}\right), \chi^2_{M-1}\left(1 - \frac{\alpha}{2}\right) \right)$, where $\chi^2_{M-1}(x)$ 
+is a $x\%$ quantile of this distribution.
+(e.g. for $\alpha = 5\%$
+and $M=100$ this interval is equal to $(73.36108, 128.422)$). 
+
+The test then work in following way: if evaluated $T$ statistics is 
+out of the confidence interval, then the null hypothesis is rejected, i.e. it is unprobable that there is a hidden message. 
+
+This attack could be extended to random writing (i.e. that DCT coefficients to be used
+are chosen randomly) by using shifting windows, so we can speak about \textit{extended chi-square attack}. 
+This approach is decribed in the paper \cite{provos2001detecting}.
 
 \subsection{F5 algorithm}
 
