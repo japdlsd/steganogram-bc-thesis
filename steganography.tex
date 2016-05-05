@@ -258,16 +258,36 @@ This approach is decribed in the paper \cite{provos2001detecting}.
 
 \subsection{F5 algorithm}
 
-In order to defend against chi-square attack, Westfield and Pfitzmann proposed F5 algorithm.
-Instead of replacing LSB to match secret message, it decreased the absolute values of randomly 
-(using stegokey) chosen DCT coefficients (skipping 0s and 1s), so it won't be detected by
-chi-square attack.
+In order to defend against chi-square attack, Westfield and Pfitzmann proposed to use 
+addition operation to match the secret bit inspite of the replacing the last bit. In this way,
+the PoVs (decribed in previous subsection) won't be so drastically changed. This approach was applied
+in Westfeld's algorithm F5 (decribed in paper \cite{steganalysis2001f5}).
 
-This approach can be broken using S family attack.
+The algorithm is a bit complex, and so it is originally describe as a series of algorithms (thus the number $5$)
+with gradual removal of the flaws.
 
-\TODO add detailed description
+F3 algorithm decreases the absolute value of the coefficients to match the secret bits inspite of their replacement, 
+thus being resistant against chi-square attack. Because of this approach, it skips zero coefficients. The problem is
+that if the original coefficient has the absolute value $1$ and the secret bit is $0$, then after the embedding
+the coefficient would be $0$. The receiver cannot distinguish between unused and decremented zeros, so algorithm
+has to embed this bit in the next coefficient available.
 
-\subsection{S family attack}
+This approach leads to two problems: F3 created more zeros than ones in the LSB of coefficients, creating the peculiar
+statistically detectable histogram, and that the original JPEG coefficients contain more odd than even values, and so
+the \emph{unchanged} part of a message contains more ones than zeros in LSBs.
+
+F4 solves these problems by inverting the meaning of negative coefficients, so that odd negative coefficient means $0$
+and even negative means $1$.
+
+F4 and F3 both suffer from sequential using of the DCT coefficients. F5 removes this weakness by choosing the coefficients
+in a random way (based on a stegonagraphic key). Additionally, F5 uses so called \emph{matrix encoding} to increase effectiveness
+of embedding ratio.
+
+F5 algorithm is currently used in many steganographic Android apps, mainly because of its open Java implementation. However, this
+algorithm can be successfully attacked with so called \emph{S attack}.
+
+
+\subsection{S attack}
 
 This attack is based on further compression of cover image and comparing 
 specifically constructed statistics $S$ of the original and compressed images.
