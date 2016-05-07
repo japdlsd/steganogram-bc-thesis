@@ -79,18 +79,18 @@ Output of the algorithm:
 \begin{Algo}
 \item 
 Use a stego-key $K$ to create a permutation of quantized coefficients $D$.
-That is, $$Q := PERM_K(D),$$ where $PERM(\cdot)$ is a key-dependent
+That is, $$Q := P_K(D),$$ where $P(\cdot)$ is a key-dependent
 permutation function and $Q$ denotes the permuted coefficient sequence.
 \item
 Divide $Q$ into two parts, $Q_1$ and $Q_2$, according to separation ratio $\alpha$.
-That is, $$Q_1 := Q[0 : \alpha * LEN(Q)],~ Q_2 := Q[\alpha * LEN(Q) : LEN(Q)],$$
-where $LEN(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
+That is, $$Q_1 := Q[0 : \alpha L(Q)],~ Q_2 := Q[\alpha L(Q) : L(Q)],$$
+where $L(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
 $a$-th to $b$-th element (half-open interval, i.e. $b$-th element does not belong into slice).
 \item 
 Separate the secret message bytes sequence $B$ into to two parts $B_1$ and $B_2$, 
 according to the separation ratio $\alpha$ (similarly to previous step).
 \item
-Let $L_1$ and $L_2$ denote the byte representations of $LEN(B_1)$ and $LEN(B_2)$, respectively.
+Let $L_1$ and $L_2$ denote the byte representations of $L(B_1)$ and $L(B_2)$, respectively.
 Let $M_1$ be the concatenation of the $L_1$ and $B_1$ ($M_1 := L_1 || M_1$). Similarly, let
 $M_2 := L_2 || B_2$. That would be our two parts we will embed into the cover image.
 \item
@@ -105,7 +105,7 @@ Embed $M'_2$ into the non-zero coefficients of $Q_2$ using algorithm E2.
 Combine $Q_1$ and $Q_2$ to form a single coefficient sequence $Q'$.
 \item 
 Using stego-key $K$, depermute the coefficient sequence $Q'$ into $D'$. That is,
-$$D' := PERM^{-1}_K(Q'),$$ where $PERM^{-1}$ denotes the inverse permutation.
+$$D' := P^{-1}_K(Q'),$$ where $P^{-1}$ denotes the inverse permutation.
 \item 
 Return $D'$.
 \end{Algo}
@@ -167,7 +167,7 @@ public int embedBitUnsafe (final int type, final int c, final int bit) {
 \end{lstlisting}
 
 Algorithm E1 additionally change a part of used coefficients using the adjustment
-parameter $\beta$. The adjustment is simple: we need to look at first $\beta * LEN(M)$ coefficients and
+parameter $\beta$. The adjustment is simple: we need to look at first $\beta L(M)$ coefficients and
 change values $-2$ to value $1$.
 
 \subsubsection{Extraction process}
@@ -188,15 +188,15 @@ Output of the algorithm:
 \begin{Algo}
 \item 
 Use a stego-key $K$ to create a permutation of quantized coefficients $D$.
-That is, $$Q := PERM_K(D),$$ where $PERM(\cdot)$ is a key-dependent
+That is, $$Q := P_K(D),$$ where $P(\cdot)$ is a key-dependent
 permutation function and $Q$ denotes the permuted coefficient sequence.
 \item
 Divide $Q$ into two parts, $Q_1$ and $Q_2$, according to separation ratio $\alpha$.
-That is, $$Q_1 := Q[0 : \alpha * LEN(Q)],~ Q_2 := Q[\alpha * LEN(Q) : LEN(Q)],$$
-where $LEN(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
+That is, $$Q_1 := Q[0 : \alpha L(Q)],~ Q_2 := Q[\alpha L(Q) : L(Q)],$$
+where $L(\cdot)$ denotes the length and $Q[a : b]$ denotes a slice of an array from 
 $a$-th to $b$-th element (half-open interval, i.e. $b$-th element does not belong into slice).
 \item
-Extract the length $L_1$ of the embedded message from the $Q_1$, then extract $L_1 * 8$ bits of
+Extract the length $L_1$ of the embedded message from the $Q_1$, then extract $8 L_1$ bits of
 the embedded message $B'_1$ from $Q_1$ by using the following algorithm:
 \begin{lstlisting}
 if (c > 0 && isEven(c)) return 0;
@@ -205,7 +205,7 @@ if (c > 0 && isOdd(c))  return 1;
 if (c < 0 && isEven(c)) return 1;
 \end{lstlisting}
 \item
-Similarly, extract the length $L_2$ of the embedded message from $Q_2$ and $L_2 * 8$ bits of the 
+Similarly, extract the length $L_2$ of the embedded message from $Q_2$ and $8 L_2$ bits of the 
 embedded message $B'_2$ by using the following algorithm:
 \begin{lstlisting}
 if (c > 0 && isOdd(c))  return 0;
