@@ -289,14 +289,15 @@ algorithm can be successfully attacked with so called \emph{S attack}.
 
 \subsection{S-family attacks}
 
-S-family is a general framework of attacks. The basic idea is that one can find (empirically) some macroscopic 
+S-family is a general framework of attacks. The basic idea is that one can find (empirically) some specific macroscopic 
 characteristic $S(p)$ of images, which changes predictably (e.g. monotonically increases) 
-with the length of the embedded secret message $p$. 
-One can then estimate critical of this function $S$ (e.g. $S(0)$ --- characteristic for an empty embedded message and
+with the length of the embedded secret message~$p$ (i.e. this function is specific for every algorithm). 
+One can then estimate critical of this function $S$ (i.e. $S(0)$ --- characteristic for an empty embedded message and
 $S(max)$ --- for the maximal possible message length). Then he has to sovle the equation $S(q) = x$, where $x$ is a given
 image with embedded message and $q$ is an estimation of this embedded message. $S(max)$ can be obtained by embedding of
-maximum possible message to obtained cover image (so it will rewrite the original hidden message), and $S(0)$can be obtained
-by cropping the cover image and recompressing with the original quantization table.
+maximum possible message to obtained cover image (so it will rewrite the original hidden message), and $S(0)$ can be obtained
+by cropping the cover image and recompressing with the original quantization table. You can read more about general structure
+here \cite{fridrich2002attacking}.
 
 For F5 algorithm, the $S$ was chosen as ''blockiness'' of the image. The process is decribed in \cite{fridrich2002steganalysis}.
 
