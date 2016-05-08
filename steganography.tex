@@ -341,16 +341,30 @@ declare the image as "suspicious". Details can be found in the original paper \c
 This method is very interesting because of seeming effectiveness: authors claim they can detect even a 1kB of embedded data
 in the image of size $800 \times 600$.
 
+\subsection{Attacks using higher order statistics}
+
+While many steganographic algorithms aim to preserve first-order statistics of cover images
+(i.e. histograms of coefficients), higher order statistics (variance, skewness and kurtosis)
+appear to be harder to preserve.
+
+Algorithm, proposed by Siwei Lyu and Hany Farid in \cite{lyu2002detecting}, expoits this fact.
+Firstly, it decomposes a cover image by using separable quadrature mirror filters (QMFs) \cite{vaidyanathan1987quadrature}.
+This filter essentially separates the image into several subimages by their frequencies (frequencies are meant as patterns,
+where more complex structures are referred to as \emph{higher frequencies}).
+Secondly, it evaluates corresponding statistics (mean value, variance, skewness and kurtosis, mentioned earlier).
+Thirdly, it obtains additional information from errors of optimal linear prediticion of coefficients magnitude.
+Fourthly, it evaluates the same 4 statistics of these data.
+
+This process is applied on a training set of images, both with hidden messages and without. Then algorithm
+applies a general classification method (originally authors had used Fisher linear discrimination analysis \cite{welling2005fisher}, now
+they use support vector machines (SVM) \cite{vapnik2013nature}). After training, the model is ready to detect images with hidden messages.
+
+Main drawback is a need of a representative training set. 
+
 \subsection{Algorithm Pm1 based on genetic algorithms (GA)}
 
 
 \TODO add Pm1 using genetic algorithms
-
-
-\subsection{Attacks using support vector machines (SVM)}
-
-\TODO add SVM and general machine learning for steganalysis
-
 
 \subsection{Attacks based on DCT coefficients probability distributions}
 \TODO short mentioning about modern approaches
