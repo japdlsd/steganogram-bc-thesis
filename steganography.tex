@@ -263,7 +263,7 @@ subtraction operation to match the secret bit inspite of the replacing the last 
 the PoVs (decribed in previous subsection) won't be so drastically changed. This approach was applied
 in Westfeld's algorithm F5 (decribed in paper \cite{steganalysis2001f5}).
 
-The algorithm is a bit complex, and so it is originally describe as a series of algorithms (thus the number $5$)
+The algorithm is a bit complex, and so it wa originally described as a series of algorithms (thus the number $5$)
 with gradual removal of the flaws.
 
 F3 algorithm decreases the absolute value of the coefficients to match the secret bits inspite of their replacement, 
@@ -281,7 +281,7 @@ and even negative means $1$.
 
 F4 and F3 both suffer from sequential using of the DCT coefficients. F5 removes this weakness by choosing the coefficients
 in a random way (based on a stegonagraphic key). Additionally, F5 uses so called \emph{matrix encoding} to increase effectiveness
-of embedding ratio.
+of embedding ratio (bits of information per modified coefficient).
 
 F5 algorithm is currently used in many steganographic Android apps, mainly because of its open Java implementation. However, this
 algorithm can be successfully attacked with so called \emph{S attack}.
@@ -301,7 +301,6 @@ here \cite{fridrich2002attacking}.
 
 For F5 algorithm, the $S$ was chosen as ''blockiness'' of the image. The process is decribed in \cite{fridrich2002steganalysis}.
 
-
 \subsection{Complementary embedding algorithm (CE)}
 
 This algorithms was designed to be resistant against both S and chi-square attacks designed for F5 and JSteg.
@@ -311,13 +310,49 @@ we've decided to put the description of this algorithm in chapter \ref{chap:theo
 along with the decsriptions of other used algorithms (you can find it in the subsection
 \ref{ssec:ce}).
 
-\subsection{Bernford law}
+\subsection{Attacks based on Benford's law}
 
-\TODO 
+This approach was described in \cite{andriotis2013two} and \cite{andriotis2013jpeg}.
+
+Benford's law states that in a random set of integer numbers the most significant digit would
+with the highest probability be $1$, second highest would be $2$, and so on. Formally, if we denote $x$
+as the most significant digit, the law could be written as this:
+$$P(x = 1) > P(x = 2) > P(x = 3) > \ldots > P(x = 9),$$
+where $P(x = i)$ is probability that the most significant digit is equal to $i$.
+
+This law was given a numerical form:
+$$p(n) = \log_{10}\left(n + \frac{1}{n}\right) ~\left(i \in \left\{ 1, \ldots , 9 \right\}\right),$$
+where $p(n)$ denotes the probability that the most significant digit is equal to $n$.
+
+This law is being used to detect elections riggings (usually authors use the Benford's law modified to 
+describe second digit distribution). You can read more in these papers \cite{mebane2006election}, \cite{roukema2009benford}, \cite{deckert2011benford}.
+
+Fu et al. in \cite{fu2007generalized} studied distribution of quantized DCT coefficients (specifically, the distribution of first digits)
+and proposed a Benford-like distribution (which they called \emph{general Benford's law}):
+$$p(n) = N \cdot \log_{10}\left(n + \frac{1}{s + n^q}\right) ~\left(i \in \left\{ 1, \ldots , 9 \right\}\right), $$
+where $N$, $s$ and $q$ are parameters dependent on used quality ratio (note that the original form can be obtained when
+$N = 1$, $s = 0$ and $q = 1$).
+
+The algotithm is easy: we need a precomputed table of paremeters for each quality ratio. Then we extract DCT coefficients
+from a cover image, compare their first digits' distribution, compare to the expected distribution and decide whether to
+declare the image as "suspicious". Details can be found in the original paper \cite{andriotis2013two}.
+
+This method is very interesting because of seeming effectiveness: authors claim they can detect even a 1kB of embedded data
+in the image of size $800 \times 600$.
+
+\subsection{Algorithm Pm1 based on genetic algorithms (GA)}
+
 
 \TODO add Pm1 using genetic algorithms
 
+
+\subsection{Attacks using support vector machines (SVM)}
+
 \TODO add SVM and general machine learning for steganalysis
+
+
+\subsection{Attacks based on DCT coefficients probability distributions}
+\TODO short mentioning about modern approaches
 
 \section{Present state of free and/or open-source programs}
 
