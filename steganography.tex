@@ -22,21 +22,19 @@ unveil the content of the message). If the stegokey, needed to embed a message i
 from the key, needed to extract it, we call this steganographic method \textit{asymmetric}. In
 other case, we call it \textit{symmetric}.
 
-\section{How to measure strength of steganographic methods?}
+\subsubsection{How to measure strength of steganographic methods?}
 
 Basic idea is simple: if a message concealed by method X was not discovered, then it's a good method.
-But the concealing power depends on the message length (example: it is relatively easy
+But the concealing power depends on the message length (analogy: it is relatively easy
 to write one date on your schooldesk without having your professor seeing it, but it's a lot
 harder to write a whole textbook on it). 
 
 Keeping that in mind, one can never tell with $100\%$
-guarantee that this object doesn't carry any message, as sometimes it could carry only one bit 
-(e.g. wearing the hat; having newspaper in your left hand; sending a postcard; etc.).
+guarantee that this object doesn't carry any message, as sometimes it could carry only a few bits.
 
-So instead another method is often used: whether the attacker can predict (or rather guess) the
-length of embedded message.
-
-\TODO some concrete stuff about measuring the strength
+As for embedded messages are often encrypted and the order of bits is permuted, it is hard
+to actually extract the message. So it is reasonable only talk about the possibility to
+distinguish between ''clean'' images and images with hidden messages. 
 
 \section{Image-based steganography}
 \label{sec:image-steganography}
