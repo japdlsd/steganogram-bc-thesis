@@ -39,15 +39,20 @@ distinguish between ''clean'' images and images with hidden messages.
 \section{Image-based steganography}
 \label{sec:image-steganography}
 
-How to hide messages in lossless image formats and why it isn't a good idea.
+In this section we will talk about how to hide information in digital images.
 
-\TODO lossless images stego and discussion about suitability
+Back in younger days of steganography, lossless images were actively used as cover images.
+Algorithms were based on embedding the secret bits into least significant bits (LSB) of pixels
+with minor alternations. This approach was heavily criticized by Westfeld and Pfitzmann in \cite{westfeld1999attacks}.
 
-\section{JPEG compression algorithm}
+In modern era, when vast majority of images are encoded in JPEG format, usage of lossless images
+is at least suspiciuos. So, in order to avoid suspicion, one has to use JPEG files.
+
+\subsection{JPEG compression algorithm}
 \label{sec:jpeg}
 
 JPEG format provides many options for storing images. We will talk about
-one of the most common versions. For further details we recommend to read \TODO source.
+one of the most common versions. For further details we recommend to read \cite{wallace1992jpeg}.
 
 Input of compression algorithm is a raw image with pixels encoded
 in RGB model (each pixel is encoded as three 8-bit numbers, representing
@@ -102,8 +107,7 @@ to represent Cr and Cb and 8 bits to represent Y channel (so Y channel is left u
 Each channel is divided into $8 \times 8$ bytes long blocks and 
 then processed separately. If channel is not exact multiple of block size,
 then incomplete blocks are filled with fake values (there are several
-methods to construct them, but details are irrelevant for our purposes. 
-For further information, you may read \TODO source).
+methods to construct them, but details are irrelevant for our purposes).
 
 \subsubsection{Discrete cosine transformation}
 
@@ -157,18 +161,11 @@ of last basis functions are often very small (because DCT "tries"
 to express image with the first sinusoids). Therefore, after
 quantisation process many of DCT coefficients could be zero.
 
-The coefficients in each block are ordered in so called \emph{zigzag}
-order (by the diagonals from the left upper corner of the block) and
-then encoded by Huffman encoding \TODO the ending.
-
-\TODO add an image of the zigzag order
-
-
 As could be expected, long sequences of zeros could be efficiently
 compressed, and therefore significant compress ratio could be achieved.
 
 
-\section{How to hide information in JPEG?}
+\subsection{How to hide information in JPEG?}
 \label{sec:how-to-hide-information}
 
 \textit{This section is based on article \cite{liu2008high}.}
@@ -188,14 +185,14 @@ in amount of zeros and ones.
 Modern algorithms try to fight with statistical approach by devising ways to
 keep intact various statistical properties of resulting numbers. 
 
-\subsection{JSteg library (direct LSB)}
+\subsubsection{JSteg library (direct LSB)}
 
 This library embed secret message in least significant bits of DCT coefficients sequentially.
 
 This approach was quite common for a period of time (there were even algorithms that performed such embedding
 in lossless images), but in year 1999 Westfeld and Pfitzmann came up with a so called \textit{chi-square attack}.
 
-\subsection{Chi-square attack}
+\subsubsection{Chi-square attack}
 
 As you can see in the original paper \cite{westfeld1999attacks}, 
 this attack was initially pointed against algorithms with lossless cover images, 
@@ -254,7 +251,7 @@ This attack could be extended to random writing (i.e. that DCT coefficients to b
 are chosen randomly) by using shifting windows, so we can speak about \textit{extended chi-square attack}. 
 This approach is decribed in the paper \cite{provos2001detecting}.
 
-\subsection{F5 algorithm}
+\subsubsection{F5 algorithm}
 
 In order to defend against chi-square attack, Westfield and Pfitzmann proposed to use 
 subtraction operation to match the secret bit inspite of the replacing the last bit. In this way,
@@ -285,7 +282,7 @@ F5 algorithm is currently used in many steganographic Android apps, mainly becau
 algorithm can be successfully attacked with so called \emph{S attack}.
 
 
-\subsection{S-family attacks}
+\subsubsection{S-family attacks}
 
 S-family is a general framework of attacks. The basic idea is that one can find (empirically) some specific macroscopic 
 characteristic $S(p)$ of images, which changes predictably (e.g. monotonically increases) 
@@ -299,7 +296,7 @@ here \cite{fridrich2002attacking}.
 
 For F5 algorithm, the $S$ was chosen as ''blockiness'' of the image. The process is decribed in \cite{fridrich2002steganalysis}.
 
-\subsection{Complementary embedding algorithm (CE)}
+\subsubsection{Complementary embedding algorithm (CE)}
 
 This algorithms was designed to be resistant against both S and chi-square attacks designed for F5 and JSteg.
 
@@ -308,7 +305,7 @@ we've decided to put the description of this algorithm in chapter \ref{chap:theo
 along with the decsriptions of other used algorithms (you can find it in the subsection
 \ref{ssec:ce}).
 
-\subsection{Attacks based on Benford's law}
+\subsubsection{Attacks based on Benford's law}
 
 This approach was described in \cite{andriotis2013two} and \cite{andriotis2013jpeg}.
 
@@ -339,7 +336,7 @@ declare the image as "suspicious". Details can be found in the original paper \c
 This method is very interesting because of seeming effectiveness: authors claim they can detect even a 1kB of embedded data
 in the image of size $800 \times 600$.
 
-\subsection{Attacks using higher order statistics}
+\subsubsection{Attacks using higher order statistics}
 
 While many steganographic algorithms aim to preserve first-order statistics of cover images
 (i.e. histograms of coefficients), higher order statistics (variance, skewness and kurtosis)
@@ -359,12 +356,12 @@ they use support vector machines (SVM) \cite{vapnik2013nature}). After training,
 
 Main drawback is a need of a representative training set. 
 
-\subsection{Algorithm Pm1 based on genetic algorithms (GA)}
+\subsubsection{Algorithm Pm1 based on genetic algorithms (GA)}
 
 
 \TODO add Pm1 using genetic algorithms
 
-\subsection{Attacks based on DCT coefficients probability distributions}
+\subsubsection{Attacks based on DCT coefficients probability distributions}
 \TODO short mentioning about modern approaches
 
 \section{Present state of free and/or open-source programs}
