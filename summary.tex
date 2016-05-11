@@ -1,3 +1,40 @@
 \chapter*{Summary}
 \addcontentsline{toc}{chapter}{Summary}
+
+In first chapter of this paper we have overviewed several
+modern approaches to digital image-based steganography (LSB embedding, F5 embedding, complementary embedding)
+and steganalysis (chi-square attack, S-family attack, attacks using higher order statistics
+and attacks based on Benford's law). We have  ended this chapter with analysis of currently available
+free applications and concluded, that most of them have many flaws.
+
+Based on this knowledge, we have deduced a set of requirements to a steganographic application, 
+that would eliminate most of these mistakes, in chapter 2.
+
+In third chapter, we've described algorithms, used in the application. Then we've discussed
+the possibility of using lossy channels to send images. We ended this chapter with a set of
+``good policies'', that a user should follow to achieve maximum effectiveness of our application.
+
+In fourth (and last) chapter of this paper, we've overviewed technical aspects of our application and 
+described how to substitute used steganographic and cryptographic algorithms with new ones.
+
+During our work, we've implemented complementary embedding steganographic algorithm in Java,
+so future Android applications won't have to use inferior F5 library no more. We've also found a mistake in CE algorithm
+description in the original paper, which we've fixed in our implementation (see chapter 3 for details).
+We also developed a skeleton of an image steganography application, so future developers won't have to
+implement JPEG compression and decompression algorithms by themselves.
+
+\subsubsection{Future work}
+Our application could be enhanced in several ways:
+\begin{itemize}
+  \item possibility of using asymmetric cryptography
+  \item key management (something like a contact book)
+  \item more eye-candy the interface
+  \item possibility to send cover images through lossy channels (briefly discussed in third chapter)
+  \item self-testing with modern steganalytic tools
+  \item running the calculations as background processes
+  \item in-app possibility to send cover images (e.g. ``Share'' button)
+\end{itemize}
+
+
+
 \TODO
