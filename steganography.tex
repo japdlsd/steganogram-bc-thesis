@@ -169,9 +169,6 @@ compressed, and therefore significant compress ratio could be achieved.
 \subsection{How to hide information in JPEG?}
 \label{sec:how-to-hide-information}
 
-\textit{This section is based on article \cite{liu2008high}.}
-
-
 An image encoded in JPEG format could be seen as a bunch of (quantized)
 DCT coefficients, which are just regular integer numbers. One of the
 most natural ideas is to change least significant bits (LSB) of these
@@ -248,8 +245,15 @@ and $M=100$ this interval is equal to $(73.36108, 128.422)$).
 The test then work in following way: if evaluated $T$ statistics is 
 out of the confidence interval, then the null hypothesis is rejected, i.e. it is unprobable that there is a hidden message. 
 
+This test is used for estimating the length of a hidden message in following way: 
+the null hypothesis is tested for every prefix of DCT coefficients array. Assuming sequential
+writing, the test should justify the null hypothesis as long as the message is longer than the prefix 
+(i.e. the secret message has smoothed the differencies between PoVs),
+and reject it as long as the message is very short compared to the prefix length 
+(i.e. the secret message hasn't changes a lot of PoVs).
+
 This attack could be extended to random writing (i.e. that DCT coefficients to be used
-are chosen randomly) by using shifting windows, so we can speak about \textit{extended chi-square attack}. 
+are chosen randomly) by using shifting windows instead of prefixes (so called \emph{extended chi-square attack}). 
 This approach is decribed in the paper \cite{provos2001detecting}.
 
 \subsubsection{F5 algorithm}
