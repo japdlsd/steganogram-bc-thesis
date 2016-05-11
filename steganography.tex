@@ -367,44 +367,62 @@ Main drawback is a need of a representative training set.
 In this section we will show common mistakes of available applications for Android.
 
 We've analysed several free applications in Google Play 
-\cite{app0,app1,app2,app3,app4,app5,app6,app7,app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18,app19} 
+\cite{app0,app1,app2,app3,app4,app5,app7,app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18,app19} 
 and enlisted mistakes we've met.
 
 \subsection{Common mistakes}
 
 \subsubsection{Closed implementation}
 Steganography and cryptography could be very complicated to implement correctly, so applications with
-no open code should always be treated with a grain of salt.
+no open code should always be treated with a grain of salt
+\cite{app0, app1, app2, app3, app4, app5, app7, app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18}
+.
 
 \subsubsection{Unknown steganographic and/or cryptographic algorithms}
 Digital image steganography is a very young field and new algorithms and attacks appear every year.
 In this context it is highly unrecommended to use old applications or applications with no such 
-specification.
+specification
+\cite{app0, app1, app2, app3, app4, app5, app7,app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18}
+.
 
 \subsubsection{No limitation for message length}
 As there are blind steganalytic methods, which does not depend on used steganographic algorithm 
 (such as using higher order statistics or Benford's law, described in section~\ref{sec:how-to-hide-information}),
-it is unrecommended to send large messages.
+it is unrecommended to send large messages
+\cite{app0, app1, app2, app3, app4, app5, app7,app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18}
+.
 
 \subsubsection{Low upper limit for a key}
-Some apps (e.g. \emph{Steganography} by Jan Meznik) has upper limit for a key set as $8$ symbols, which is considered low
-by any standard.
+Some apps has upper limit for a key set as $8$ symbols, which is considered low
+by any standard
+\cite{app0}
+.
 
 \subsubsection{Lossless images used as carrier}
-It is highly unrecommended to use lossless image formats as cover images. We've discussed this matter in section \ref{sec:image-steganography}
-(this is a case for application \emph{NiaStego}).
+It is highly unrecommended to use lossless image formats as cover images. 
+We've discussed this matter in section \ref{sec:image-steganography}
+\cite{app2, app3}
+.
 
 \subsubsection{No support of non-latin symbols}
-Some applications (e.g. \emph{Pocket Stego}) has only ASCII support.
+Some applications has only ASCII support
+\cite{app3, app17}
+.
 
-\subsubsection{Predefined cover images and possibility to use same images repeatedly}
+\subsubsection{Possibility to use same images repeatedly}
 It is highly unrecommended to use the same image twice as a carrier, let alone having 
-a predefined set of images (this is a case for application \emph{VipSecret}).
+a predefined set of images
+\cite{app0, app1, app2, app3, app7, app8,app9,app10,app11,app12,app13,app14,app15,app16,app17,app18, app19}
+.
 
-\subsubsection{Steganographic algorithm is not key-dependant}
+\subsubsection{Steganographic algorithm is not (mandatorily) key-dependant}
 Keyless algorithms are very vulnerable to attacks (it would suffice in that case
-to use the original application to detect hidden message).
+to use the original application to detect hidden message)
+\cite{app2, app3, app4, app7, app9, app11, app14, app16, app17, app19}
+.
 
 \subsubsection{No encryption nor compression}
 Most of steganographic algorithm work under the assumption that a message has uniform distribution
-of $0$ and $1$ (which is a case for encrypted message).
+of $0$ and $1$ (which is a case for encrypted message)
+\cite{app0, app3, app4, app7, app11}
+.
