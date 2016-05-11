@@ -18,7 +18,7 @@ In this section we will show the general architecture of the application
 and describe the main parts.
 
 Our goal was to separate the interface and internal logic. We've achiveved that
-by creating ''junction'' class \texttt{Solution}, which has been inserted between
+by creating ``junction'' class \texttt{Solution}, which has been inserted between
 Android-specific interface code and steganographic core, so that code, responsing for
 the interface, is working only with this layer.
 
@@ -27,7 +27,7 @@ Now we will walk through all major functions of our application and describe wha
 \subsection{Embedding process}
 
 An user types a secret message he wants to embed into an image. Then he takes a photo with 
-phone's camera. Then he clicks a button ''Start embedding''. The program checks, whether 
+phone's camera. Then he clicks a button ``Start embedding''. The program checks, whether 
 an image is accessible, and then calls function \texttt{Solution.embed()}.
 
 \texttt{Solution} object decodes a string with the secret message into a byte array,
@@ -40,7 +40,7 @@ back to the cover image, which is then saved into the phone's Gallery.
 
 \subsection{Extracting process}
 
-An user chooses an image with embedded image from a Gallery and clicks on ''Start extracting'' button.
+An user chooses an image with embedded image from a Gallery and clicks on ``Start extracting'' button.
 The program calls function \texttt{Solution.extract()}.
 
 \texttt{Solution} object sends the image into the \texttt{info.guardianproject.f5android.Extract()} function,
