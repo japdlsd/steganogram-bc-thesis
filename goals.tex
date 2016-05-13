@@ -12,13 +12,13 @@ creating a way to communicate with outer world securely and inconspicuously
 (e.g. correspondents).
 
 We have chosen digital images as our communication medium because it is only natural for
-a mobile phone to have plenty of almost useless photos (e.g. photoes of someone's dog or dinner)
+a mobile phone to have plenty of almost useless photos (e.g. photos of someone's dog or dinner)
 and these photos are being sent through various social media all the time.
 
 In chapter \ref{sec:image-steganography} we discussed about different formats for
 this purpose, and we've chosen \emph{JPEG} as the most suitable.
 
-\section{Functional reqiurements}
+\section{Functional requirements}
 In this section we will discuss \emph{which} tasks our application has to be able to perform.
 
 \subsubsection{Embedding and extracting of messages into images}
@@ -33,7 +33,7 @@ using of the same image, which is \emph{very bad} for user's inconspicuousness.
 \subsubsection{Message encryption}
 The application has to be able to encrypt and decrypt the message. This also contributes
 to undetectability of the secret message, as the result of extracting still would be 
-undistinguishable from a random noise.
+indistinguishable from a random noise.
 
 We also have had to decide whether we will use symmetric or asymmetric
 encryption. We decided to stick with symmetric, as it has easier key management.
@@ -47,8 +47,8 @@ The secret message has to compressed in order to take minimum possible space in 
 as bigger changes in medium are easier to detect.
 
 \subsubsection{Key management}
-Our application has to be able to genererate secure keys for steganographic and
-cryptographic algoritmhs. It is also should be possible to share a key with someone
+Our application has to be able to generate secure keys for steganographic and
+cryptographic algorithms. It is also should be possible to share a key with someone
 else (in order to communicate).
 
 Whenever an application has to deal with keys, it is a good idea to conceal them
@@ -63,7 +63,7 @@ send a message of given length.
 
 
 
-\section{Technical requierements}
+\section{Technical requirements}
 In this section we will discuss requirements on \emph{how} our application has
 to perform its tasks.
 
@@ -82,5 +82,5 @@ methods were implemented correctly).
 
 \subsubsection{Ability to withstand additional compression}
 Many social media are known to compress any images that are sent through
-their systems. We'd like to analyse whether it is possible to save the information
-in the image inspite of compression (e.g. by using error correction encoding).
+their systems. We'd like to analyze whether it is possible to save the information
+in the image instead of compression (e.g. by using error correction encoding).

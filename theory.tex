@@ -40,7 +40,7 @@ Both pipelines are shown in the figure \ref{img:CSflow}.
 
 \section{Used algorithms}
 In this section we will describe algorithms that we used in our application
-and discuss their suitness for our purpose. 
+and discuss their suitability for our purpose. 
 We have had to find a balance between potential quality of the algorithms 
 and the cost of their implementation and usage.
 
@@ -51,7 +51,7 @@ and the cost of their implementation and usage.
 
 This algorithm was proposed by Chiang-Lung~Liu and Shiang-Rong~Liao in \cite{liu2008high}.
 We've chosen this algorithm as it has better steganographic properties than the ``unofficial
-stadnart'' algorithm F5 and is relatively simple to implement and to verify its correctness.
+standard'' algorithm F5 and is relatively simple to implement and to verify its correctness.
 
 This algorithm was primarily developed to withstand S-attacks (as opposed to F5~algorithm).
 It achieves this goal by dividing both message and DCT~coefficients into two parts
@@ -98,7 +98,7 @@ Convert byte sequences $M_1$ and $M_2$ to bit sequences $M'_1$ and $M'_2$ (by us
 encoding).
 \item
 Embed $M'_1$ into the non-zero coefficients of $Q_1$ using algorithm E1. Note that
-the adjustment parameter $\beta$ is used here to make it more resistable against statistical attacks.
+the adjustment parameter $\beta$ is used here to make it more resistant against statistical attacks.
 \item
 Embed $M'_2$ into the non-zero coefficients of $Q_2$ using algorithm E2.
 \item
@@ -111,13 +111,13 @@ Return $D'$.
 \end{Algo}
 
 Algorithms E1 and E2 are essentially just for-loops through all bits of the secret message
-and coefficients with a complex if-statement inside, descibing how to change coefficients
+and coefficients with a complex if-statement inside, describing how to change coefficients
 (changes of coefficients depend on oddness of the coefficient and
 value of the secret bit). Detailed pseudocode can be found in the original paper \cite{liu2008high}.
 
 Here we show our implementation of these algorithms' if-statements 
 in a single function (in Java programming language). 
-Variable~$type$ denotes whether we are using E1 or E2 algotithm.
+Variable~$type$ denotes whether we are using E1 or E2 algorithm.
 
 \begin{lstlisting}
 public int embedBitUnsafe (final int type, final int c, final int bit) {
@@ -234,7 +234,7 @@ values $\frac{4}{5}$ and $\frac{1}{3}$, respectively.
 \subsubsection{Limit for a message length}
 The authors of the algorithm implies that for chosen values of the parameters
 it is safe enough to use even $50\%$ of nonzero coefficients, i.e. the algorithm
-is still resistable to chi-square and S families of attacks. As for general measures
+is still resistant to chi-square and S families of attacks. As for general measures
 of changing of the cover image, authors tell us that it is safe enough to use all
 nonzero coefficients available.
 
@@ -258,7 +258,7 @@ You can read more about this in \cite{deutsch1996deflate} and \cite{deutsch1996g
 \section{Resistance against additional compression}
 \label{sec:addcomp}
 
-In this section we will shortly decribe the possibilities of compression-resistant
+In this section we will shortly describe the possibilities of compression-resistant
 steganography.
 
 Recompression of a JPEG image has a lot of parameters. Main are the size of an image
@@ -267,7 +267,7 @@ secondary ones, like encoding the pixels in RGB or in YCrCb, rounding of Cb and 
 (8 bytes or 4 bytes), and so on.
 
 Good news are that the most of these factors can be dealt with by simply choosing a cover
-image with the same parameters as the result of the additional comprimation (assuming 
+image with the same parameters as the result of the additional compression (assuming 
 these parameters aren't going to change).   
 
 The are two problematic ones: the size and the quality ratio, as they could be change
@@ -282,7 +282,7 @@ ruining any DCT-based steganography.
 
 We can, in theory, deal with the change of quality ratio by using error-correction codes.
 The main issue is that lowering of the quality would result in nullifying the coefficients,
-thus shifitng the space the algorithm would search for a hidden message. It can be seen
+thus shifting the space the algorithm would search for a hidden message. It can be seen
 as the erasing of message symbols in general coding theory. It could be dealt with
 by permuting the whole blocks, not the individual coefficients.
 
@@ -292,15 +292,15 @@ higher change of detection.
 In our application, we decided not to implement the compression-resistant algorithm.
 
 \section{How to use the application correctly}
-In this section we will describe common mistakes and give some advices on
+In this section we will describe common mistakes and give several recommendations on
 how to achieve maximum inconspicuousness.
 
 \subsubsection{Never use the same image twice}
 
 Imagine a situation: the censor sees two visually identical message with little 
-differencies in thier digital representation. He may make only one conclusion: 
+differences in their digital representation. He may make only one conclusion: 
 the sender tries to manipulate the images to send some information. Therefore
-it is highly unrecommended to use similar images to steganography.
+it is highly inadvisable to use similar images to steganography.
 
 \subsubsection{Never send the same message twice}
 
@@ -308,7 +308,7 @@ Imagine another situation: the censor sees two images, compare their DCT coeffic
 and sees the the pattern in their last bits (remember, the secret bits are embedded into
 the same positions). There is only one natural conclusion: the sender uses the steganography.
 
-\subsubsection{Use images with high number of colours}
+\subsubsection{Use images with high number of colors}
 Also avoid computer art, images with semantic context (like texts).
 
 \subsubsection{Change your keys frequently}
@@ -316,21 +316,21 @@ Firstly, the keys have tendency to be leaked. Secondly, with enough tapped commu
 keys can be deduced with prior knowledge. Thirdly, modern stochastic statistical approaches 
 (neural networks, nonlinear programming, etc.) could theoretically distinguish images with
 embedded messages from ``clean'' even without any knowledge of the algorithm, not mentioning
-the keys. Fixing the key (i.e. fixing the positions of the cofficients to be changed)
+the keys. Fixing the key (i.e. fixing the positions of the coefficients to be changed)
 would only help the attackers.
 
 
 \subsubsection{Generate your secret keys by app's utilities, not by hand}
 Another general advice: small human-generated passwords are easier to break (dictionary attack,
-bruteforce, etc.). All basic advices for choosing a password are applicable here: long passwords
+brute force, etc.). All basic recommendations for choosing a password are applicable here: long passwords
 with nonstandard symbols (numbers, special symbols, uppercase, etc.) are generally better.
 
 We recommend to use standard in-app utility to generate the keys.
 
 If you decide to generate the password by yourself, 
-we recommend to stay in a set of ASCII characters for simplier key distribution (although keys are
-stored as UTF-8 strings, so you can potentially use even non-latin symbols 
-(Japan hieroglyphs, Arabic symbols, cyrillic, etc.)).
+we recommend to stay in a set of ASCII characters for simpler key distribution (although keys are
+stored as UTF-8 strings, so you can potentially use even non-Latin symbols 
+(Japan hieroglyphs, Arabic symbols, Cyrillic, etc.)).
 
 \subsubsection{Use only secure channels to distribute your keys}
 The best option is to physically meet with your correspondent.
@@ -339,7 +339,7 @@ The best option is to physically meet with your correspondent.
 \subsubsection{Try to write your messages as short as possible}
 This rule has a simple explanation: shorter message means less changed coefficients, thus
 lesser distortion in statistical properties of an image, therefore better undetectability.
-We recommend to send messages with length less than 1kB (based on claimed effectiveness
+We recommend to send messages with length less than 1KB (based on claimed effectiveness
 of steganalytic methods).
 
 \subsubsection{Use only lossless communication channels}

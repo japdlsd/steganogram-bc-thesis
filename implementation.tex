@@ -17,9 +17,9 @@ The application has been developed and tested on Android OS 4.4 .
 In this section we will show the general architecture of the application
 and describe the main parts.
 
-Our goal was to separate the interface and internal logic. We've achiveved that
+Our goal was to separate the interface and internal logic. We've achieved that
 by creating ``junction'' class \texttt{Solution}, which has been inserted between
-Android-specific interface code and steganographic core, so that code, responsing for
+Android-specific interface code and steganographic core, so that code, responsible for
 the interface, is working only with this layer.
 
 Now we will walk through all major functions of our application and describe what is going on inside.
@@ -33,7 +33,7 @@ an image is accessible, and then calls function \texttt{Solution.embed()}.
 \texttt{Solution} object decodes a string with the secret message into a byte array,
 compress it, encrypts it and then calls a function \texttt{info.guardianproject.f5android.Embed()},
 which we borrowed from another open-source steganographic application \emph{Pixelknot} by Guardian
-Project (mailny the correct implementation of encoding/decoding images into and from the JPEG format). 
+Project (mainly the correct implementation of encoding/decoding images into and from the JPEG format). 
 This function extract DCT coefficients from the taken image,  applies our steganographic
 algorithm, implemented as \texttt{DCTsteganographyCERep} class, and then envelops the changed coefficients
 back to the cover image, which is then saved into the phone's Gallery.
@@ -75,7 +75,7 @@ them by generating 60 random bytes with \texttt{SecureRandom} class from the sta
 Java library \texttt{java.security} and then encoding them into \emph{Base64} strings.
 We've chosen the length of the passwords to be divisible by $3$ so that the resulting
 Base64 string would not have a padding. 
-You can read more about Base64 enoding here \cite{josefsson2006base16}.
+You can read more about Base64 encoding here \cite{josefsson2006base16}.
 
 We've chosen the Base64 encoding as it encodes the bytes into the most common set
 of printable characters and is faster (and easier to implement correctly) 
@@ -105,17 +105,17 @@ The steganographic algorithm has three main pairs of transformation functions:
 \end{itemize}
 
 As the functions has only small finite amount of possible inputs, we've decided
-to test their mutual inversibility exhaustively (i.e. on every possible input).
+to test their mutual reversibility exhaustively (i.e. on every possible input).
 
 During the tests, we've found that the embedding algorithm from the original
 paper \cite{liu2008high} was incorrect. We've been able to pinpoint and correct
-the error thanks to a decription of the inverse process in the paper. In this 
+the error thanks to a decryption of the inverse process in the paper. In this 
 paper we give the correct implementation of this algorithm (and by that we mean
 that the functions \texttt{embedBit} and \texttt{extractBit} are mutually inverse).
 You can find the description of the error in the listing in the subsection \ref{sssec:therory-embedding}.
 
 \section{How to replace used algorithms}
-In this section we will decribe the interfaces of used algorithms.
+In this section we will describe the interfaces of used algorithms.
 
 \subsubsection{Steganographic algorithm interface}
 \texttt{DCTSteganography} interface has four functions.
@@ -127,7 +127,7 @@ a string representation of a steganographic key. It returns
 
 Function \texttt{generateStegoKeyString} returns a 
 valid string representation of a newly created steganographic key 
-(this string should be parseable by function \texttt{loadKeyFromString}).
+(this string should be parsable by function \texttt{loadKeyFromString}).
 
 Function \texttt{embed} takes two arguments: an integer array \texttt{coeffOrig}
 representing quantized DCT coefficients of a cover image and an \texttt{InputStream} 
@@ -136,7 +136,7 @@ This function returns nothing, but it embeds the secret message into
 the DCT coefficients. 
 
 Function \texttt{extract} takes two arguments: an integer array \texttt{coeffOrig}
-representing qunatized DCT coefficients of a cover image with embedded message
+representing quantized DCT coefficients of a cover image with embedded message
 and an \texttt{ExtractionListener} that have to be called with the extracted message
 as an argument.
 
@@ -163,7 +163,7 @@ a string representation of a cryptographic key. It returns
 
 Function \texttt{generateCryptoKeyString} returns a 
 valid string representation of a newly created cryptographic key 
-(this string should be parseable by function \texttt{loadKeyFromString}).
+(this string should be parsable by function \texttt{loadKeyFromString}).
 
 Function \texttt{encrypt} takes one argument --- a byte array that represents
 a message to be encrypted and returns a byte array representing the encrypted
