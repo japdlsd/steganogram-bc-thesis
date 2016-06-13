@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="43cm" height="27cm" viewBox="59 79 850 523" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <polygon style="fill: #ffffff" points="513.831,282 640,282 626.169,320 500,320 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="513.831,282 640,282 626.169,320 500,320 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="570" y="304.9">
+      <tspan x="570" y="304.9">Cover image</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="73.8309,180 204.204,180 190.374,218 60,218 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="73.8309,180 204.204,180 190.374,218 60,218 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="132.102" y="202.9">
+      <tspan x="132.102" y="202.9">Secret message</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="367.831,83 494,83 480.169,121 354,121 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="367.831,83 494,83 480.169,121 354,121 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="424" y="105.9">
+      <tspan x="424" y="105.9">Crypto key</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="526.287,80 620.192,80 604.905,122 511,122 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="526.287,80 620.192,80 604.905,122 511,122 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="565.596" y="104.9">
+      <tspan x="565.596" y="104.9">Stego key</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="240" y="180" width="105.05" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="240" y="180" width="105.05" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="292.525" y="202.9">
+      <tspan x="292.525" y="202.9">Compression</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="380" y="180" width="90.75" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="380" y="180" width="90.75" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="425.375" y="202.9">
+      <tspan x="425.375" y="202.9">Encryption</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="520" y="180" width="94.7" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="520" y="180" width="94.7" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="567.35" y="202.9">
+      <tspan x="567.35" y="202.9">Embedding</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="673.831,180 907.354,180 893.524,218 660,218 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="673.831,180 907.354,180 893.524,218 660,218 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="783.677" y="202.9">
+      <tspan x="783.677" y="202.9">Image with embedded message</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="197.289" y1="199" x2="229.259" y2="199"/>
+    <polygon style="fill: #000000" points="236.759,199 226.759,204 229.259,199 226.759,194 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="236.759,199 226.759,204 229.259,199 226.759,194 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="346.049" y1="199" x2="369.291" y2="199"/>
+    <polygon style="fill: #000000" points="376.791,199 366.791,204 369.291,199 366.791,194 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="376.791,199 366.791,204 369.291,199 366.791,194 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="471.718" y1="199" x2="509.278" y2="199"/>
+    <polygon style="fill: #000000" points="516.778,199 506.778,204 509.278,199 506.778,194 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="516.778,199 506.778,204 509.278,199 506.778,194 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="615.688" y1="199" x2="656.561" y2="199"/>
+    <polygon style="fill: #000000" points="664.061,199 654.061,204 656.561,199 654.061,194 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="664.061,199 654.061,204 656.561,199 654.061,194 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="424.283" y1="121.999" x2="424.954" y2="169.266"/>
+    <polygon style="fill: #000000" points="425.06,176.765 419.919,166.837 424.954,169.266 429.918,166.695 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="425.06,176.765 419.919,166.837 424.954,169.266 429.918,166.695 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="565.988" y1="122.916" x2="566.819" y2="169.311"/>
+    <polygon style="fill: #000000" points="566.953,176.81 561.775,166.901 566.819,169.311 571.773,166.722 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="566.953,176.81 561.775,166.901 566.819,169.311 571.773,166.722 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="569.48" y1="280.997" x2="568.123" y2="228.736"/>
+    <polygon style="fill: #000000" points="567.928,221.238 573.186,231.105 568.123,228.736 563.189,231.365 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="567.928,221.238 573.186,231.105 568.123,228.736 563.189,231.365 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="73.8309,460 307.354,460 293.524,498 60,498 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="73.8309,460 307.354,460 293.524,498 60,498 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="183.677" y="482.9">
+      <tspan x="183.677" y="482.9">Image with embedded message</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="454.831,563 571.954,563 558.124,601 441,601 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="454.831,563 571.954,563 558.124,601 441,601 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="506.477" y="585.9">
+      <tspan x="506.477" y="585.9">Crypto key</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="334.287,360 445.66,360 430.374,402 319,402 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="334.287,360 445.66,360 430.374,402 319,402 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="382.33" y="384.9">
+      <tspan x="382.33" y="384.9">Stego key</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="600" y="460" width="120.9" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="600" y="460" width="120.9" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="660.45" y="482.9">
+      <tspan x="660.45" y="482.9">Decompression</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="460" y="460" width="92.3" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="460" y="460" width="92.3" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="506.15" y="482.9">
+      <tspan x="506.15" y="482.9">Decryption</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="340" y="460" width="87.65" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="460" width="87.65" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="383.825" y="482.9">
+      <tspan x="383.825" y="482.9">Extracting</tspan>
+    </text>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="774.559,460 904.932,460 890.374,500 760,500 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="774.559,460 904.932,460 890.374,500 760,500 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="832.466" y="483.9">
+      <tspan x="832.466" y="483.9">Secret message</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="301.08" y1="479" x2="329.268" y2="479"/>
+    <polygon style="fill: #000000" points="336.768,479 326.768,484 329.268,479 326.768,474 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="336.768,479 326.768,484 329.268,479 326.768,474 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="382.664" y1="402.916" x2="383.372" y2="449.311"/>
+    <polygon style="fill: #000000" points="383.487,456.81 378.335,446.888 383.372,449.311 388.333,446.735 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="383.487,456.81 378.335,446.888 383.372,449.311 388.333,446.735 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="428.637" y1="479" x2="449.273" y2="479"/>
+    <polygon style="fill: #000000" points="456.773,479 446.773,484 449.273,479 446.773,474 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="456.773,479 446.773,484 449.273,479 446.773,474 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="506.414" y1="562.034" x2="506.244" y2="508.702"/>
+    <polygon style="fill: #000000" points="506.221,501.202 511.252,511.186 506.244,508.702 501.252,511.218 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="506.221,501.202 511.252,511.186 506.244,508.702 501.252,511.218 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="553.239" y1="479" x2="589.263" y2="479"/>
+    <polygon style="fill: #000000" points="596.763,479 586.763,484 589.263,479 586.763,474 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="596.763,479 586.763,484 589.263,479 586.763,474 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="721.901" y1="479.357" x2="757.038" y2="479.562"/>
+    <polygon style="fill: #000000" points="764.538,479.605 754.509,484.547 757.038,479.562 754.567,474.547 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="764.538,479.605 754.509,484.547 757.038,479.562 754.567,474.547 "/>
+  </g>
+</svg>
