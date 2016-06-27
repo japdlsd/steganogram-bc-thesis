@@ -89,6 +89,36 @@
 
 \usepackage{comment}
 
+% \usepackage{listings}
+% \lstset{
+% language=Java,
+% basicstyle=\scriptsize\ttfamily,
+% %numbers=left,
+% %numberstyle=\tiny\color{lightblue},
+% %stepnumber=1,
+% %numbersep=15pt,
+% showspaces=false,
+% showstringspaces=false,
+% tabsize=4,
+% breaklines=true,
+% keywordstyle=\color{darkblue}\bfseries,
+% ndkeywordstyle=\color{gray}\bfseries,
+% commentstyle=\color{gray}\em,
+% stringstyle=\color{red},
+% frame=single % for frames around the code blocks
+% }
+% \definecolor{linkcolor}{rgb}{0, 0.4, 0.7}
+% \definecolor{blue}{rgb}{0,0.4,0.7}
+% \definecolor{darkblue}{rgb}{0,0.3,0.6}
+% \definecolor{gray}{rgb}{0.4,0.4,0.4}
+% \definecolor{lightgray}{rgb}{0.7,0.7,0.7}
+% \definecolor{red}{rgb}{1,0.05,0.05}
+% \definecolor{darkred}{rgb}{0.8,0,0}
+% \definecolor{lightblue}{rgb}{0.2,0.6,0.9}
+% \definecolor{black}{rgb}{0,0,0}
+
+
+
 %----------------------------------------------------------------------------------------
 %   TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -97,7 +127,7 @@
 \title[JPEG Steganografia]{Android aplikácia pre obrázkovú steganografiu} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 
-\author{Askar Gafurov} % Your name
+\author[Askar Gafurov]{Askar Gafurov\\ {\scriptsize  Vedúci práce: RNDr. Michal Forišek, PhD.}} % Your name
 \institute[FMFI UK] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 %Faculty of mathematics, physics and informatics \\ % Your institution for the title page
@@ -107,7 +137,7 @@ Univerzita Komenského v Bratislave \\
 \medskip
 \url{ksp.sk/~askar} % Your email address
 }
-\date{13. júna 2016} % Date, can be changed to a custom date
+\date{28. júna 2016} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -123,7 +153,7 @@ Univerzita Komenského v Bratislave \\
 
 %\end{block}
 %\begin{block}{}
-Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú jej \textit{pritomnosť}.
+Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú jej \textit{prítomnosť}.
 \end{block}
 
 \begin{block}{}
@@ -205,7 +235,7 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
         \item algoritmy F5, Outguess (2001)
         \item S-rodina útokov (2002)
         \item útoky na základe strojového učenia (SVM) (2002)
-        \item komplementárne vkládanie (2008)
+        \item komplementárne vkladanie (2008)
         \item nový prístup: genetické algoritmy (2009)
         \item použitie štat. vlastností Fourierovej transformácie,\\
             Benfordov zákon (2013)
@@ -217,7 +247,7 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
     \begin{itemize}
         \item Skrytá implementácia
         \item Neznáme a/alebo zastaralé algoritmy
-        \item Nespravné použitie algoritmov
+        \item Nesprávne použitie algoritmov
         \item Neohraničená dĺžka správ
         \item Žiadne požiadavky na silu kľúčov, prípadne totálna absencia kľúčov
         \item Použivanie bezstratových formátov
@@ -251,7 +281,7 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
     %popis obrazku
     %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
     %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
-    \label{img:CSflow}
+    
     \end{figure}
     
 \end{frame}
@@ -259,8 +289,8 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
 \begin{frame}
     \frametitle{Použité algoritmy}
     \begin{itemize}
-        \item Steganografia --- komplementárne vkládanie
-        \item Kryptográfia --- AES-256
+        \item Steganografia --- komplementárne vkladanie
+        \item Kryptografia --- AES-256
         \item Kompresia --- GZIP
     \end{itemize}
     
@@ -269,12 +299,12 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
 \begin{frame}
     \frametitle{Optimálne podmienky použitia}
     \begin{itemize}
-        \item Nepouživajte dvakrát ten istý obrázok
+        \item Nepoužívajte dvakrát ten istý obrázok
         \item Neposielajte dvakrát tú istú správu
-        \item Použivajte rôznorodé farebné obrázky
+        \item Používajte rôznorodé farebné obrázky
         \item Často meňte svoje kľúče
         \item Generujte svoje kľúče pomocou bezpečných mechanizmov
-        \item Použivajte bezpečné kanály na distribúciu kľúčov
+        \item Používajte bezpečné kanály na distribúciu kľúčov
         \item Posielajte čo najkratšie správy
     \end{itemize}
 \end{frame}
@@ -285,23 +315,129 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
     \begin{itemize}
         \item Prehľad moderných metód
         \item Zoznam chýb a špecifikácia, ktorá ich eliminuje
-        \item Návrh metódy na použivanie stratových kanálov
+        \item Návrh metódy na používanie stratových kanálov
         \item Implementovaná modulárna open-source aplikácia
-        \item Voľne dostupna Java implementácia novšieho rýchleho steganografického algoritmu (lepší ako F5)
+        \item Voľne dostupná Java implementácia novšieho rýchleho steganografického algoritmu (lepší ako F5)
         \item Odhalená chyba v originálnom článku (podrobnejšie v texte práce)
     \end{itemize}
     
 \end{frame}
 
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_1.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_2.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_3.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_4.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_5.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_6.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_7.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Úkažka}
+    \begin{figure}
+    %vlozenie samotneho obrazku vycentrovaneho a vhodnej velkosti
+    %obrazok je v subore images/cervik.png
+    \centerline{\includegraphics[height=0.8 \textheight]{images/screen_8.png}}
+    %popis obrazku
+    %\caption[Main pipelines]{Main pipelines. Upper part: embedding process, lower part: extracting process}
+    %id obrazku, pomocou ktoreho sa budeme na obrazok odvolavat
+    \end{figure}
+\end{frame}
+
+
 
 \begin{frame}
     \frametitle{Budúca práca}
     \begin{itemize}
-        \item Prídanie asymetrického šifrovania
+        \item Pridanie asymetrického šifrovania
         \item Pokročilý manažement kľúčov (potrebný pre asym. šifrovanie)
-        \item Krajšie použivateľské rozhranie
+        \item Krajšie používateľské rozhranie
         \item Odolnosť voči dodatočnej kompresii obrázkov
-        \item Prídanie vstavaných testov pomocou známych steganalýtických nástrojov
+        \item Pridanie vstavaných testov pomocou známych steganalytických nástrojov
     \end{itemize}
     
 \end{frame}
@@ -318,13 +454,6 @@ Na rozdiel od kryptografie, je potrebné ukryť nie obsah správy, ale samotnú 
         Otázky?
     \end{center}
 \end{frame}
-
-\section{Technické detaily}
-
-\section{Úkažka}
-
-\section{Budúca práca}
-
 
 \begin{comment}
 \section{What is steganography?}
